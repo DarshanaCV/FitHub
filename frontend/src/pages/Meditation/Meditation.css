@@ -1,0 +1,51 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.meditation-container {
+    margin-left: 90px;
+}
+.meditation-head-container{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.meditation-head-info{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 2%;
+    margin-top: 2%;
+    margin-left: 4%;
+}
+.meditation-head-info .heading{
+    margin-top: -5px;
+    margin-bottom: 2%;
+}
+.meditation-head-info button{
+    width: 150px;
+    height: 49px;
+    border: none;
+    outline: none;
+    border-radius: 49px;
+    cursor: pointer;
+    background-color: #8a65af;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: .5s;
+}
+.meditation-head-info button:hover {
+    background-color: #aa8ac8;
+}
+.meditation-head-container img{
+    margin-right: 5%;
+}
