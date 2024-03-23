@@ -1,15 +1,33 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { auth, database } from '../../firebase_setup/firebase';
-import { ref, onValue } from 'firebase/database';
+import { ref, onValue, update } from 'firebase/database';
 import { useNavigate } from 'react-router-dom'
 import '../../pages/Meditation/Meditation.css';
 import MeditationTimer from '../../components/MeditationTimer/MeditationTimer';
-import Timer from "../../Timer/Timer";
+import SetTimer from "../../components/Timer/SetTimer";
+import CountdownAnimation from '../../components/Timer/CountdownAnimation';
+import { SettingContext } from "../../context/SettingsContext";
+import Button from "../../components/Timer/Button"
 
 const Meditation = () => {
     const [sessionDuration, setSessionDuration] = useState(10);
     const [timerRunning, setTimerRunning] = useState(false);
     const [displayName, setDisplayName] = useState(null);
+    const {
+            stopTimer,
+            meditate,
+            executing,
+            setCurrentTimer,
+            SettingBtn,
+            children,
+            isPlaying,
+            startTimer,
+            pauseTimer,
+            updateExecute,
+            startAnimate
+            }=useContext(SettingContext)
+
+    useEffect(()=>updateExecute(executing),[executing,startAnimate])
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -54,16 +72,64 @@ const Meditation = () => {
                 </div>
                 <img src="./media/meditate/2.png" alt="meditate"/>
             </div>
-            <MeditationTimer
+            {/* <MeditationTimer
                 duration={sessionDuration}
                 timerRunning={timerRunning}
                 onStart={() => setTimerRunning(true)}
                 onPause={() => setTimerRunning(false)}
                 onReset={() => setTimerRunning(false)}
                 onDurationChange={handleDurationChange}
-            />
+            /> */}
+        <div className="meditate-timer-container">
+            {meditate !== 0 ? 
+                <>
+                    <ul className="timer-labels">
+                        <li>
+                            <Button 
+                                title="Meditate"
+                                active={executing.active === "meditate" && "active-label"}
+                                _callback={()=>setCurrentTimer('meditate')}
+                            />
+                        </li>
 
-            <Timer />
+                        <li>
+                            <Button 
+                                title="Short Break"
+                                active={executing.active === "short" && "active-label"}
+                                _callback={()=>setCurrentTimer('short')}
+                            />
+                        </li>
+
+                        <li>
+                            <Button 
+                                title="Long Break"
+                                active={executing.active === "short" && "active-label"}
+                                _callback={()=>setCurrentTimer('long')}
+                            />
+                        </li>
+                    </ul>
+                    <Button title="Settings" _callback={SettingBtn}/>
+                    <div className="countdown-container">
+                        <div className="countdown-wrapper">
+                            <CountdownAnimation
+                                key={meditate}
+                                timer={meditate}
+                                animate={isPlaying}
+                            >
+                                {children}
+                            </CountdownAnimation>
+                        </div>
+                    </div>
+                    <div className="button-wrapper">
+                        <Button title="Start" className={isPlaying ? 'activeClass':undefined} _callback={startTimer}/>
+                        <Button title="Pause" className={!isPlaying ? 'activeClass':undefined} _callback={pauseTimer}/>
+                        <Button title="Stop" className={!isPlaying ? 'activeClass':undefined} _callback={stopTimer}/>
+                    </div>
+                </>
+                 :
+                <SetTimer/>
+            }
+        </div>
         </div>
     );
 };
