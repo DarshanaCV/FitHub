@@ -50,14 +50,31 @@
     margin-right: 5%;
 }
 
-.timer-container{
-    text-align: center;
-
+.box-container {
+    height: 50vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color: #a600ff; */
 }
-.meditate-timer-container{
+
+.box {
+    background-color: rgb(255, 255, 255);
+    height: 90%;
+    width: 18%;
     display: flex;
     flex-direction: column;
-    text-align: center;
     align-items: center;
-    background-color: #aa8ac8;
+    justify-content: space-evenly;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.box:hover{
+    transform: scale(1.05);
+}
+
+.box img{
+    height: 250px;
+    width: 250px;
 }
