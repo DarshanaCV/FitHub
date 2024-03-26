@@ -1,0 +1,70 @@
+.guided-breathing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background: url("../../../public/media/meditate/guided-breathing/bg2.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+
+}
+
+.square {
+    width: 403px;
+    height: 405px;
+    border: 6px solid rgb(124, 116, 116);
+    position: absolute;
+    top: 157px;
+    left: 565px;
+}
+.circle{
+    height: 300px;
+    width: 300px;
+    background-color: rgba(94, 45, 110, 0.789);
+    border-radius: 200px;
+    position: absolute;
+    top: 11.5%;
+    left: 11.5%;
+}
+.circle1{
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    border-radius: 200px;
+    transition: transform 3.0s;
+    background-color: rgba(94, 45, 110, 0.701);
+}
+.circle2{
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    border-radius: 200px;
+    transition: transform 3s;
+    background-color:rgba(94, 45, 110, 0.458);
+}
+.square .text{
+    text-align: center;
+    font-size: 40px;
+    color: white;
+    margin-top: 42%;
+    transition: transform 4.0s;
+}
+.zoom-in {
+    transform: scale(1.1);
+}
+.zoom-in-circle{
+    transform: scale(1.12);
+}
+
+.dot {
+    width: 30px;
+    height: 30px;
+    background-color: orangered;
+    border-radius: 50%;
+    position: absolute;
+}

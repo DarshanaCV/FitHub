@@ -12,7 +12,7 @@
     height: 200px;
 }
 
-svg {
+.svg {
     width: 100%;
     height: 100%;
 }
@@ -36,19 +36,17 @@ svg {
     text-align: center;
     font-size: large;
 }
-.meditation-timer-input input{
-    /* background-color: antiquewhite; */
+.meditation-timer-input input{ 
+    background-color: antiquewhite;
     width: 20%;
-    padding: 3%;
     text-align: center;
     border: 1px solid gray;
     border-radius: 5px;
     margin-top: 10px;
-    margin-left: 3%;
     font-size: medium;
 }
 
-/* Hide arrow marks in number input */
+Hide arrow marks in number input
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;

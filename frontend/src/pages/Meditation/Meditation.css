@@ -78,3 +78,8 @@
     height: 250px;
     width: 250px;
 }
+.box p{
+    text-decoration: none;
+    color: black;
+    font-size: large;
+}

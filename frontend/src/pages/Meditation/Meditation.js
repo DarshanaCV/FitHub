@@ -4,7 +4,11 @@ import { ref, onValue, update } from 'firebase/database';
 import { useNavigate } from 'react-router-dom'
 import '../../pages/Meditation/Meditation.css';
 import MeditationTimer from "../../components/MeditationTimer/MeditationTimer";
+import { NavLink } from "react-router-dom";
+
 const Meditation = () => {
+
+
     const [sessionDuration, setSessionDuration] = useState(10);
     const [timerRunning, setTimerRunning] = useState(false);
     const [displayName, setDisplayName] = useState(null);
@@ -38,7 +42,6 @@ const Meditation = () => {
     const handleNavigate = (identifier) => {
         switch (identifier) {
             case 'guided-breathing':
-                // Navigate to guided breathing page
                 break;
             case 'meditation-for-self-love':
                 // Navigate to meditation for self-love page
@@ -80,26 +83,30 @@ const Meditation = () => {
             /> */}
 
             <div className="box-container">
-                <div className="box guided-breathing" onClick={() => handleNavigate('guided-breathing')}>
+                <NavLink to="/guided-breathing" className="box guided-breathing">
                     <img src="./media/meditate/guided-breathing2.png" alt="guided-breathing" />
                     <p>Guided breathing</p>
-                </div>
-                <div className="box meditation-for-self-love" onClick={() => handleNavigate('meditation-for-self-love')}>
+                </NavLink>
+                
+                <NavLink to="/guided-breathing" className="box guided-breathing">
                     <img src="./media/meditate/meditation-for-self-love.png" alt="meditation-for-self-love" />
-                    <p>Mediation for self love</p>
-                </div>
-                <div className="box find-inner-piece" onClick={() => handleNavigate('find-inner-piece')}>
+                    <p>Meditation for self love</p>
+                </NavLink>
+
+                <NavLink to="/guided-breathing" className="box find-inner-piece">
                     <img src="./media/meditate/find-inner-piece.png" alt="find-inner-piece" />
-                    <p>Find inner piece</p>
-                </div>
-                <div className="box break-from-stress" onClick={() => handleNavigate('break-from-stress')}>
+                    <p>Find inner peace</p>
+                </NavLink>
+
+                <NavLink to="/guided-breathing" className="box break-from-stress">
                     <img src="./media/meditate/break-from-stress.png" alt="break-from-stress" />
                     <p>Break from stress</p>
-                </div>
-                <div className="box meditate-in-nature" onClick={() => handleNavigate('meditate-in-nature')}>
+                </NavLink>
+                
+                <NavLink className="box meditate-in-nature" to="/guided-breathing">
                     <img src="./media/meditate/break-from-stress2.png" alt="meditate-in-nature" />
                     <p>Meditate in nature</p>
-                </div>
+                </NavLink>
 
             </div>
             
