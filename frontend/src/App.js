@@ -6,7 +6,7 @@ import Home from './pages/Home/Home'
 import Signup from './pages/Signup/Signup';
 import Yoga from './pages/Yoga/Yoga';
 import Meditation from './pages/Meditation/Meditation';
-import GuidedBreathing from './components/GuidedBreathing/GuidedBreathing';
+import GuidedBreathing from './pages/GuidedBreathing/GuidedBreathing';
 
 const App = () => {
 

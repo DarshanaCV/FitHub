@@ -1,15 +1,20 @@
-.guided-breathing-container {
+.box-breathing-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-left: 90px;
     /* background: url("../../../public/media/meditate/guided-breathing/bg2.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; */
 
 }
-
+.countdown{
+    position: absolute;
+    left: 45%;
+    top: 9%;
+}
 .square {
     width: 403px;
     height: 405px;
