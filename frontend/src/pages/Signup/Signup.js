@@ -86,7 +86,8 @@ const Signup = () => {
             const user = userCredential.user;
             await set(ref(database, `users/${user.uid}`), {
             username: username,
-            email: email
+            email: email,
+            streaks:{}
             });
             console.log('User signed up successfully!');
             navigate("/signup");

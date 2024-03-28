@@ -7,7 +7,7 @@ import Signup from './pages/Signup/Signup';
 import Yoga from './pages/Yoga/Yoga';
 import Meditation from './pages/Meditation/Meditation';
 import GuidedBreathing from './pages/GuidedBreathing/GuidedBreathing';
-
+import GuidedBreathingContainer from './pages/GuidedBreathing/GuidedBreathingContainer';
 const App = () => {
 
     return (
@@ -19,6 +19,7 @@ const App = () => {
                 <Route path='/yoga' element={<Yoga/>}></Route>
                 <Route path='/meditate' element={<Meditation/>}></Route>
                 <Route path='/guided-breathing' element={<GuidedBreathing/>}></Route>
+                <Route path='/guided-breathing-page' element={<GuidedBreathingContainer/>}></Route>
             </Routes>
             {/* <Footer /> */}
         </BrowserRouter>

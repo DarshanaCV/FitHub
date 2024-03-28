@@ -39,21 +39,6 @@ const Meditation = () => {
             }
         },[])
 
-    const handleNavigate = (identifier) => {
-        switch (identifier) {
-            case 'guided-breathing':
-                break;
-            case 'meditation-for-self-love':
-                // Navigate to meditation for self-love page
-                break;
-            
-            // Add cases for other identifiers as needed
-            default:
-                // Default action
-        }
-    };
-
-
     const handleDurationChange = (newDuration) => {
         setSessionDuration(newDuration);
     };
@@ -83,7 +68,7 @@ const Meditation = () => {
             /> */}
 
             <div className="box-container">
-                <NavLink to="/guided-breathing" className="box guided-breathing">
+                <NavLink to="/guided-breathing-page" className="box guided-breathing">
                     <img src="./media/meditate/guided-breathing2.png" alt="guided-breathing" />
                     <p>Guided breathing</p>
                 </NavLink>

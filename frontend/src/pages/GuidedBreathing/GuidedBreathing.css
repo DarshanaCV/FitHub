@@ -17,7 +17,7 @@
     text-transform: uppercase;
     font-weight: 600;
     transition: .5s;
-    margin-top: -6.5%;
+    margin-top: -41%;
     margin-left: -5%;
 }
 .btn-text:hover{
@@ -46,6 +46,9 @@
     0% {
         height: 79.9vh;
     }
+    50%{
+        height: 40vh;
+    }
     100% {
         height: 0vh;
     }
@@ -54,4 +57,96 @@
     position: absolute;
     left: 90.5%;
     top: 90%;
+}
+
+
+/********  INFO PAGE  *********/
+.box-breathing-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 36%;
+    margin-left: 90px;
+}
+.box-breathing-info-section1{
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.box-breathing-container h1{
+    margin-bottom: 2%;
+    letter-spacing: 0.9px;
+}
+.streak{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    background-color: rgb(246, 246, 246);
+    padding: 0% 7% 1% 5%;
+    box-shadow: 0 1px 35px rgba(86, 86, 86, 0.155);
+}
+.streak p{
+    font-size: x-large;
+}
+.box-breathing-info-section1 p{
+    line-height: 1.7;
+    letter-spacing: 0.3px;
+    font-size: large;
+    margin-top: -2%;
+}
+.right img{
+    height: 400px;
+    width: 680px;
+    margin-top: -4%;
+}
+.box-breathing-info-section2{
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    justify-content: space-evenly;
+}
+.box-breathing-info-section2 h1{
+    margin-top: 0%;
+}
+.box-breathing-info-section2 p{
+    letter-spacing: 0.3px;
+    line-height: 1.7;
+    margin-top: 0.5%;
+    font-size: large;
+}
+.box-breathing-info-section2 h2{
+    font-weight: 600;
+    margin-top: 1%;
+    letter-spacing: 0.5px;
+}
+.box-breathing-info-section3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -2%;
+    padding: 0% 0% 5% 5%;
+
+}
+.notes{
+    width: 60%;
+    letter-spacing: 0.3px;
+}
+.notes h4{
+    font-weight: 400;
+}
+.start-box-breathing{
+    height: 50%;
+    padding: 0% 4%;
+    font-size: larger;
+    letter-spacing: 0.3px;
+    border-radius: 20px;
+    margin-right: 12%;
+    background-color: #8a65af;
+    color: #fff;
+    font-size: larger;
+    cursor: pointer;
 }
