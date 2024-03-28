@@ -8,9 +8,6 @@ import { NavLink } from "react-router-dom";
 
 const Meditation = () => {
 
-
-    const [sessionDuration, setSessionDuration] = useState(10);
-    const [timerRunning, setTimerRunning] = useState(false);
     const [displayName, setDisplayName] = useState(null);
 
     useEffect(() => {
@@ -39,9 +36,6 @@ const Meditation = () => {
             }
         },[])
 
-    const handleDurationChange = (newDuration) => {
-        setSessionDuration(newDuration);
-    };
 
     return (
         <div className='meditation-container'>
@@ -58,14 +52,6 @@ const Meditation = () => {
                 <img src="./media/meditate/2.png" alt="meditate"/>
             </div>
             
-            {/* <MeditationTimer
-                duration={sessionDuration}
-                timerRunning={timerRunning}
-                onStart={() => setTimerRunning(true)}
-                onPause={() => setTimerRunning(false)}
-                onReset={() => setTimerRunning(false)}
-                onDurationChange={handleDurationChange}
-            /> */}
 
             <div className="box-container">
                 <NavLink to="/guided-breathing-page" className="box guided-breathing">
