@@ -115,7 +115,7 @@ function BoxBreathing({ startBreathing }) {
                 <div className="square">
                     <audio id="breatheInAudio" src={breatheInSound} />
                     <audio id="breatheOutAudio" src={breatheOutSound} />
-                    <div className="circle">
+                    <div className="inner-circle">
                         <div className={`circle1 ${zoomIn ? 'zoom-in' : ''}`}>
                             <div className={`circle2 ${zoomIn ? 'zoom-in-circle' : ''}`}>
                                 <p className={`text ${zoomIn ? 'zoom-in' : ''}`}>{text}</p>

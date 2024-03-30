@@ -8,8 +8,9 @@
 
 .circle {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
+    margin-top: 2%;
 }
 
 .svg {
@@ -18,14 +19,14 @@
 }
 
 .progress-ring {
-    fill: none;
-    stroke: #ddd;
+    stroke: #dddddde3;
     stroke-width: 2;
+    fill: none;
 }
 
 .progress-circle {
-    fill: none;
-    stroke: #a600ff;
+    fill: white;
+    stroke: rgba(255, 120, 71, 0.696);
     stroke-width: 3;
     stroke-linecap: round;
     transform-origin: center;
@@ -35,18 +36,23 @@
 .meditation-timer-input{
     text-align: center;
     font-size: large;
+    display: flex;
+    flex-direction: row;
+    align-items: first baseline;
+    justify-content: space-evenly;
 }
 .meditation-timer-input input{ 
-    background-color: antiquewhite;
+    background-color: white;
     width: 20%;
     text-align: center;
     border: 1px solid gray;
     border-radius: 5px;
     margin-top: 10px;
     font-size: medium;
+    padding-left: 10px;
+    margin-left: -11%;
 }
-
-Hide arrow marks in number input
+input
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -56,25 +62,25 @@ input[type='number']::-webkit-outer-spin-button {
 .meditation-timer-settings{
     display: flex;
     flex-direction: row;
-    gap: 2%;
-    justify-content: space-between;
-    width: 17%;
+    justify-content: space-around;
+    width: 50%;
 }
 
-.meditation-timer-settings button{
-    padding: 2% 5%;
+.meditation-timer-settings .buttons{
+    padding: 15px 20px;
     border-radius: 10px;
-    border: 1px solid black;
     font-size: large;
+    background-color: #8e3396;
+    color: white;
+    cursor: pointer;
+    margin-top: 13%;
 }
-
 .timer-display {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     font-size: 24px;
-    font-weight: bold;
-    fill: #000;
+    font-weight: 600;
 }
 
 

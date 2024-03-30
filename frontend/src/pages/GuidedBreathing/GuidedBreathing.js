@@ -38,7 +38,7 @@ const GuidedBreathing = () => {
             }, 1000);
         }
 
-        if (progressTime >= 1) {
+        if (progressTime >= 600) {
             console.log("saved to database");
             getData()
             clearInterval(interval);

@@ -59,8 +59,8 @@ const Meditation = () => {
                     <p>Guided breathing</p>
                 </NavLink>
                 
-                <NavLink to="/guided-breathing" className="box guided-breathing">
-                    <img src="./media/meditate/meditation-for-self-love.png" alt="meditation-for-self-love" />
+                <NavLink to="/custom-meditate" className="box guided-breathing">
+                    <img src="./media/meditate/meditation-for-self-love.png" alt="custom-meditate" />
                     <p>Meditation for self love</p>
                 </NavLink>
 
