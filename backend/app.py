@@ -35,20 +35,20 @@ def calculate_angle(a, b, c):
         angle = 360 - angle
     return angle
 
-def start_timer(pose_correct):
-    start_time=0
-    seconds=0
-    if pose_correct==True:  
-        if start_time == 0:
-            start_time = time.time()  # Start the timer
-            time_tuple = time.localtime(start_time)
-            # hours = time_tuple.tm_hour
-            # minutes = time_tuple.tm_min
-            seconds = time_tuple.tm_sec
-    else:
-        start_time = 0
-        seconds=0
-    return seconds
+# def start_timer(pose_correct):
+#     start_time=0
+#     seconds=0
+#     if pose_correct==True:  
+#         if start_time == 0:
+#             start_time = time.time()  # Start the timer
+#             time_tuple = time.localtime(start_time)
+#             # hours = time_tuple.tm_hour
+#             # minutes = time_tuple.tm_min
+#             seconds = time_tuple.tm_sec
+#     else:
+#         start_time = 0
+#         seconds=0
+#     return seconds
         
 def correct_warrior_pose(results):
     result={}
@@ -286,7 +286,7 @@ def posture_card(right_hand,left_hand,right_leg,left_leg,image_path,frame, pose_
         cv2.circle(frame, (board_pos_x_1 + board_width_1 - board_radius_1, board_pos_y_1 + board_height_1 - board_radius_1 +1), board_radius_1, board_color_1, -1)
 
     # Define parameters for the rounded rectangle
-    board_height = 340
+    board_height = 300
     board_width = 180
     board_pos_x = 10
     board_pos_y = 20
@@ -340,9 +340,9 @@ def posture_card(right_hand,left_hand,right_leg,left_leg,image_path,frame, pose_
     cv2.putText(frame, "Left leg", (15,293), cv2.FONT_HERSHEY_SIMPLEX, font_scale, font_color, font_thickness)
     cv2.putText(frame,".Correct" if left_leg else "Incorrect" ,(103,293),cv2.FONT_HERSHEY_SIMPLEX,font_scale,define_color(left_leg),font_thickness)
 
-    seconds=start_timer(pose_correct) 
-    draw_rectangle(board_height_1,board_width_1+67,board_pos_x_1-67,board_pos_y_1+110,board_color_1,board_thickness_1,board_radius_1)
-    cv2.putText(frame, f"Best time: {seconds:.2f}s", (board_pos_x_1-39, board_pos_y_1+124), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,0,0), 1)          
+    # seconds=start_timer(pose_correct) 
+    # draw_rectangle(board_height_1,board_width_1+67,board_pos_x_1-67,board_pos_y_1+110,board_color_1,board_thickness_1,board_radius_1)
+    # cv2.putText(frame, f"Best time: {seconds:.2f}s", (board_pos_x_1-39, board_pos_y_1+124), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,0,0), 1)          
 
 def trigger_model(model_name):
     global video

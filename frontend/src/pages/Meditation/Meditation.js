@@ -61,7 +61,7 @@ const Meditation = () => {
                 
                 <NavLink to="/custom-meditate" className="box guided-breathing">
                     <img src="./media/meditate/meditation-for-self-love.png" alt="custom-meditate" />
-                    <p>Meditation for self love</p>
+                    <p>Custom Meditation</p>
                 </NavLink>
 
                 <NavLink to="/guided-breathing" className="box find-inner-piece">

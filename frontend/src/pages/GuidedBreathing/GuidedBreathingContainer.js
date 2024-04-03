@@ -8,6 +8,10 @@ const GuidedBreathingContainer = () => {
     const [streak, setStreak] = useState("0 Streak");
     const navigate = useNavigate();
 
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
