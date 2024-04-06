@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import axios from 'axios';
 import "./YogaPoseInfo.css"
 import { database, auth } from '../../firebase_setup/firebase';
@@ -37,35 +37,11 @@ const Tree=()=>{
         get(userRef)
         .then((snapshot)=>{
             const userData=snapshot.val()
-            if(userData.yogaBestTime){
-                if(userData.yogaBestTime.tree.bestTime<bestTime){
-                    const newData={
-                        ...userData,
-                        yogaBestTime:{
-                            tree:{
-                                date:`${currentDate}`,
-                                bestTime:bestTime
-                            }
-                        }
-                    }
-                    update(userRef,newData)
-                    .then(()=>{
-                        setBestTime(bestTime)
-                        console.log(`best time updated successfully ${bestTime}`);
-                    })
-                    .catch((error)=>{
-                        console.error(error);
-                    })
-                }
-                else{
-                    console.log("best time is greater");
-                    setBestTime(userData.yogaBestTime.tree.bestTime)
-                }
-            }
-            else{
+            if(userData.yogaBestTime.tree.bestTime<bestTime){
                 const newData={
                     ...userData,
                     yogaBestTime:{
+                        ...userData.yogaBestTime,
                         tree:{
                             date:`${currentDate}`,
                             bestTime:bestTime
@@ -74,13 +50,18 @@ const Tree=()=>{
                 }
                 update(userRef,newData)
                 .then(()=>{
-                    bestTime(userData.yogaBestTime.tree.bestTime)
-                    console.log(`Best time created successfully ${bestTime}`);
+                    setBestTime(bestTime)
+                    console.log(`best time updated successfully ${bestTime}`);
                 })
                 .catch((error)=>{
                     console.error(error);
                 })
             }
+            else{
+                console.log("best time is greater");
+                setBestTime(userData.yogaBestTime.tree.bestTime)
+            }
+            
         })
         .catch((error)=>{
             console.error(error);
@@ -93,7 +74,6 @@ const Tree=()=>{
         try {
             const result = await axios.post('http://localhost:5000/run-model', { modelName });
             setBestTime(result.data.best_time)
-
             console.log(result);
             
         } catch (error) {
