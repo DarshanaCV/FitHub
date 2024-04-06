@@ -18,6 +18,7 @@ const Signup = () => {
     const [showPassError, setShowPassError] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const [isCPasswordDirty, setIsCPasswordDirty] = useState(false);
+    const [displayLoginError,setDisplayLoginError] =useState("");
     const [emaillogin, setEmaillogin] = useState('');
     const [passwordlogin, setPasswordlogin] = useState('');
     const [isActive, setIsActive] = useState(true);
@@ -35,6 +36,7 @@ const Signup = () => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage)
+                setDisplayLoginError(errorMessage)
             });
     })
     .catch((error) => {
@@ -159,7 +161,7 @@ const Signup = () => {
                                 <FontAwesomeIcon className="FontAwesomeIcon" icon={faLock} />
                                 <input type="password" name="password" placeholder="password" required onChange={(e)=>setPasswordlogin(e.target.value)} /><br/>    
                             </div>
-                            
+                            { displayLoginError ? <div> Enter correct email or password </div> : ''}
                             <button type="submit" className="btn" onClick={onLogin} >LOGIN</button><br/>
 
                     </form>

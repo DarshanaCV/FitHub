@@ -3,7 +3,6 @@ import { auth, database } from '../../firebase_setup/firebase';
 import { ref, onValue, update } from 'firebase/database';
 import { useNavigate } from 'react-router-dom'
 import '../../pages/Meditation/Meditation.css';
-import MeditationTimer from "../../components/MeditationTimer/MeditationTimer";
 import { NavLink } from "react-router-dom";
 
 const Meditation = () => {
