@@ -15,15 +15,12 @@ const GuidedBreathingContainer = () => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
-                // User is signed in, perform necessary operations
                 getData(user.uid);
             } else {
-                // User is signed out, handle accordingly (e.g., redirect to sign-in page)
                 navigate("/signup");
             }
         });
-
-        return () => unsubscribe(); // Clean up the listener when the component unmounts
+        return () => unsubscribe();
     }, [navigate]);
 
     const getData = (userId) => {

@@ -1,12 +1,99 @@
+import React, { useRef } from 'react'
 import axios from 'axios';
 import "./YogaPoseInfo.css"
+import { database, auth } from '../../firebase_setup/firebase';
+import { get, ref ,update} from "firebase/database";
+import { useNavigate } from "react-router-dom";
 
 const Tree=()=>{
+    const [bestTime,setBestTime]=React.useState(0)
+    const navigate = useNavigate();
+    
+    React.useEffect(()=>{
+        const userToken = localStorage.getItem('userToken');
+        console.log("signed in");
+        if(!userToken){
+            navigate("/signup")
+        }
+    },[])
+
+    React.useEffect(()=>{
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
+                getData(user.uid);
+            } else {
+                navigate("/signup");
+            }
+        });
+        return () => unsubscribe();
+    },[bestTime])
+
+    const getData=()=>{
+        console.log(auth.currentUser.reloadUserInfo.localId);
+        const id=auth.currentUser.reloadUserInfo.localId
+        const currentDate = new Date().toISOString().split('T')[0];
+        const userRef=ref(database,`/users/${id}`)
+
+        get(userRef)
+        .then((snapshot)=>{
+            const userData=snapshot.val()
+            if(userData.yogaBestTime){
+                if(userData.yogaBestTime.tree.bestTime<bestTime){
+                    const newData={
+                        ...userData,
+                        yogaBestTime:{
+                            tree:{
+                                date:`${currentDate}`,
+                                bestTime:bestTime
+                            }
+                        }
+                    }
+                    update(userRef,newData)
+                    .then(()=>{
+                        setBestTime(bestTime)
+                        console.log(`best time updated successfully ${bestTime}`);
+                    })
+                    .catch((error)=>{
+                        console.error(error);
+                    })
+                }
+                else{
+                    console.log("best time is greater");
+                    setBestTime(userData.yogaBestTime.tree.bestTime)
+                }
+            }
+            else{
+                const newData={
+                    ...userData,
+                    yogaBestTime:{
+                        tree:{
+                            date:`${currentDate}`,
+                            bestTime:bestTime
+                        }
+                    }
+                }
+                update(userRef,newData)
+                .then(()=>{
+                    bestTime(userData.yogaBestTime.tree.bestTime)
+                    console.log(`Best time created successfully ${bestTime}`);
+                })
+                .catch((error)=>{
+                    console.error(error);
+                })
+            }
+        })
+        .catch((error)=>{
+            console.error(error);
+        })
+    }
+        
     const handleButtonClick = async () => {
         const modelName="tree_pose"
         console.log("Button clicked:", modelName);
         try {
             const result = await axios.post('http://localhost:5000/run-model', { modelName });
+            setBestTime(result.data.best_time)
+
             console.log(result);
             
         } catch (error) {
@@ -26,6 +113,7 @@ const Tree=()=>{
                     <p>level: Begineer</p>
                     <p>Pronounciation</p>
                     <p>(vrik-SHAHS-anna)</p>
+                    <p>Best time:{bestTime}s</p>
                 </div>
             </div>
             <div className="tree-video">
