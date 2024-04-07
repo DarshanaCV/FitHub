@@ -86,32 +86,34 @@ const Goddess=()=>{
             <div className="tree-head">
                 <div className="tree-head-left">
                     <h1>Goddess Pose</h1>
-                    <p>Vrikshasana</p>
+                    <p>Utkata Konasana</p>
                     <button onClick={handleButtonClick}>Get Started</button>
                 </div>
                 <div className="tree-head-right">
-                    <p>level: Begineer</p>
+                    <p>level: Intermediate</p>
                     <p>Pronounciation</p>
-                    <p>(vrik-SHAHS-anna)</p>
+                    <p>(Utkata: "Oot-kah-tah"<br/>
+                        Konasana: "Koh-nah-sah-nah)</p>
                     <p>Best time:{bestTime}s</p>
                 </div>
             </div>
             <div className="tree-video">
                 <video height="500px" width="680px" autoPlay loop muted>
-                    <source src="\media\yoga\tree.mp4" type="video/mp4" />
+                    <source src="\media\yoga\goddess.mp4" type="video/mp4" />
                 </video>
             </div>
             <div className="tree-instructions">
                 <p>
-                    Tree pose, also known as Vrksasana in Sanskrit, is a foundational yoga pose that helps improve balance, focus, and concentration. Here's how you can do the Tree pose:<br/>
-                    1. Start by standing tall in Mountain pose (Tadasana) with your feet hip-width apart and your arms at your sides.<br/>
-                    2. Shift your weight onto your left foot and lift your right foot off the ground.<br/>
-                    3. Bend your right knee and use your right hand to bring your right foot to your left inner thigh. You can place your foot on your calf or ankle if bringing it to the thigh is challenging.<br/>
-                    4. Press your right foot into your inner thigh while gently pressing your thigh back into your foot. Avoid placing your foot directly on your knee joint to prevent strain.<br/>
-                    5. Engage your core muscles and lengthen your spine. You can place your hands in prayer position at your heart center (Anjali Mudra) or extend your arms overhead, palms facing each other.<br/>
-                    6. Find a focal point in front of you to help with balance and concentration.<br/>
-                    7. Hold the pose for several breaths, maintaining steady breathing. If you feel stable, you can experiment with gently swaying your arms or slowly raising them overhead.<br/>
-                    8. To release the pose, lower your right foot down and return to Mountain pose. Repeat on the other side by shifting your weight to your right foot and lifting your left foot.<br/>
+                    The Goddess Pose, or "Utkata Konasana" in Sanskrit, is a powerful yoga pose that strengthens the lower body, opens the hips, and improves balance. Here's how to do it:<br/>
+                    1. Starting Position: Begin standing tall at the top of your mat with your feet about 3-4 feet apart, toes pointing out at a 45-degree angle. Keep your arms by your sides, palms facing forward.<br/>
+                    2. Engage Core: Engage your core muscles by drawing your navel in toward your spine. This will help stabilize your torso throughout the pose.<br/>
+                    3. Bend Your Knees: Bend your knees deeply, sinking your hips down toward the level of your knees. Keep your knees tracking in line with your toes; don't let them collapse inward or push too far past your toes.<br/>
+                    4. Arms Positioning: Bring your arms out to the sides at shoulder height, bending your elbows to form a cactus shape with your arms. Your palms can either face forward or be turned to face each other, whichever feels more comfortable for you.<br/>
+                    5. Torso Position: Keep your torso upright, with your spine lengthened and your chest lifted. Try to avoid leaning forward or backward.<br/>
+                    6. Sink Deeper: If you're comfortable, sink deeper into the pose by lowering your hips a little more toward the level of your knees. Keep pressing down through your feet to maintain stability.<br/>
+                    7. Hold the Pose: Hold the Goddess Pose for several breaths, focusing on maintaining your alignment and feeling the strength and stability in your lower body.<br/>
+                    8. Release: To come out of the pose, straighten your legs and bring your arms back down by your sides.<br/>
+                    9. Repeat: You can repeat the Goddess Pose a few times, holding it for as long as feels comfortable for you.<br/>
                 </p>
                 
             </div>

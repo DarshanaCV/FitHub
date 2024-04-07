@@ -86,32 +86,37 @@ const Warrior=()=>{
             <div className="tree-head">
                 <div className="tree-head-left">
                     <h1>Warrior Pose</h1>
-                    <p>Vrikshasana</p>
+                    <p>Virabhadrasana II</p>
                     <button onClick={handleButtonClick}>Get Started</button>
                 </div>
                 <div className="tree-head-right">
-                    <p>level: Begineer</p>
+                    <p>level: Intermediate</p>
                     <p>Pronounciation</p>
-                    <p>(vrik-SHAHS-anna)</p>
+                    <p>(Veer-buh-DRAH-suh-nuh)</p>
                     <p>Best time:{bestTime}s</p>
                 </div>
             </div>
             <div className="tree-video">
                 <video height="500px" width="680px" autoPlay loop muted>
-                    <source src="\media\yoga\tree.mp4" type="video/mp4" />
+                    <source src="\media\yoga\warrior.mp4" type="video/mp4" />
                 </video>
             </div>
             <div className="tree-instructions">
                 <p>
-                    Tree pose, also known as Vrksasana in Sanskrit, is a foundational yoga pose that helps improve balance, focus, and concentration. Here's how you can do the Tree pose:<br/>
-                    1. Start by standing tall in Mountain pose (Tadasana) with your feet hip-width apart and your arms at your sides.<br/>
-                    2. Shift your weight onto your left foot and lift your right foot off the ground.<br/>
-                    3. Bend your right knee and use your right hand to bring your right foot to your left inner thigh. You can place your foot on your calf or ankle if bringing it to the thigh is challenging.<br/>
-                    4. Press your right foot into your inner thigh while gently pressing your thigh back into your foot. Avoid placing your foot directly on your knee joint to prevent strain.<br/>
-                    5. Engage your core muscles and lengthen your spine. You can place your hands in prayer position at your heart center (Anjali Mudra) or extend your arms overhead, palms facing each other.<br/>
-                    6. Find a focal point in front of you to help with balance and concentration.<br/>
-                    7. Hold the pose for several breaths, maintaining steady breathing. If you feel stable, you can experiment with gently swaying your arms or slowly raising them overhead.<br/>
-                    8. To release the pose, lower your right foot down and return to Mountain pose. Repeat on the other side by shifting your weight to your right foot and lifting your left foot.<br/>
+                    Warrior 2 pose, also known as "Virabhadrasana II" in Sanskrit, is a standing yoga pose that strengthens 
+                    the legs, stretches the groins and torso, and builds focus and stability. Here's how to do Warrior 2 pose:<br/>
+                    1. Starting Position: Begin in a standing position (Mountain Pose or Tadasana). <br/>
+                    2. Step Back: Step your feet about 3 to 4 feet apart, with your right foot pointing forward and your left foot pointing slightly inward.<br/>
+                    3. Align Your Feet: Align your right heel with the arch of your left foot. Your right foot should be pointing towards the front edge of your mat.<br/>
+                    4. Square Your Hips: Rotate your left hip towards the back of the mat, and your right hip towards the front of the mat. Your hips should be parallel to the side of your mat.<br/>
+                    5. Bend Your Front Knee: Bend your right knee directly over your right ankle, keeping the shin perpendicular to the floor. Your thigh should be parallel to the floor.<br/>
+                    6. Extend Your Arms: Extend your arms parallel to the floor, reaching actively out to the sides with your palms facing down. Your arms should be in line with your shoulders.<br/>
+                    7. Gaze Forward: Turn your head to gaze over your right hand, keeping your neck relaxed.<br/>
+                    8. Lengthen Your Spine: Lengthen through your spine, reaching the crown of your head towards the ceiling.<br/>
+                    9. Engage Your Core: Draw your navel in towards your spine to engage your core muscles.<br/>
+                    10. Sink Into the Pose: Sink down into your front thigh, keeping your back leg strong and straight. Your weight should be evenly distributed between both feet.<br/>
+                    11. Hold the Pose: Hold the Warrior 2 pose for 30 seconds to 1 minute, breathing deeply and steadily.<br/>
+                    12. Switch Sides: To release the pose, straighten your front leg and step your feet back together. Repeat the pose on the opposite side, stepping your left foot forward and your right foot back.<br/>
                 </p>
                 
             </div>

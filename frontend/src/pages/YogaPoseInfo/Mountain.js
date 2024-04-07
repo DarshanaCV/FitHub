@@ -86,32 +86,37 @@ const Mountain=()=>{
             <div className="tree-head">
                 <div className="tree-head-left">
                     <h1>Mountain Pose</h1>
-                    <p>Vrikshasana</p>
+                    <p>Tadasana</p>
                     <button onClick={handleButtonClick}>Get Started</button>
                 </div>
                 <div className="tree-head-right">
                     <p>level: Begineer</p>
                     <p>Pronounciation</p>
-                    <p>(vrik-SHAHS-anna)</p>
+                    <p>(tah-dah-SAH-nah)</p>
                     <p>Best time:{bestTime}s</p>
                 </div>
             </div>
             <div className="tree-video">
                 <video height="500px" width="680px" autoPlay loop muted>
-                    <source src="\media\yoga\tree.mp4" type="video/mp4" />
+                    <source src="\media\yoga\mountain.mp4" type="video/mp4" />
                 </video>
             </div>
             <div className="tree-instructions">
                 <p>
-                    Tree pose, also known as Vrksasana in Sanskrit, is a foundational yoga pose that helps improve balance, focus, and concentration. Here's how you can do the Tree pose:<br/>
-                    1. Start by standing tall in Mountain pose (Tadasana) with your feet hip-width apart and your arms at your sides.<br/>
-                    2. Shift your weight onto your left foot and lift your right foot off the ground.<br/>
-                    3. Bend your right knee and use your right hand to bring your right foot to your left inner thigh. You can place your foot on your calf or ankle if bringing it to the thigh is challenging.<br/>
-                    4. Press your right foot into your inner thigh while gently pressing your thigh back into your foot. Avoid placing your foot directly on your knee joint to prevent strain.<br/>
-                    5. Engage your core muscles and lengthen your spine. You can place your hands in prayer position at your heart center (Anjali Mudra) or extend your arms overhead, palms facing each other.<br/>
-                    6. Find a focal point in front of you to help with balance and concentration.<br/>
-                    7. Hold the pose for several breaths, maintaining steady breathing. If you feel stable, you can experiment with gently swaying your arms or slowly raising them overhead.<br/>
-                    8. To release the pose, lower your right foot down and return to Mountain pose. Repeat on the other side by shifting your weight to your right foot and lifting your left foot.<br/>
+                    Mountain pose improves posture, strengthens the legs and core, and promotes a sense of grounding and stability.<br/>
+                    1. Starting Position: Begin by standing at the top of your mat with your feet together or hip-width apart, whichever feels more comfortable for you. Distribute your weight evenly across both feet.<br/>
+                    2. Alignment: Align your feet parallel to each other, with toes pointing forward. Spread your toes wide and distribute the weight evenly across the soles of your feet.<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  2.1.   Engage your thigh muscles by lifting your kneecaps slightly. Activate your core by drawing your navel gently toward your spine.<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  2.2.   Lengthen your spine by lifting through the crown of your head. Imagine your spine growing taller with each breath.<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  2.3.   Roll your shoulders back and down, allowing your chest to open up. Keep your arms relaxed by your sides.<br/>
+                    3. Breathing: Take slow, deep breaths. Inhale deeply through your nose, expanding your chest and abdomen. Exhale fully through your nose, releasing any tension from your body.<br/>
+                    4. Hand Position: You have a few options for your hand placement<br/>
+                    5. Allow your arms to hang naturally by your sides, with palms facing inward or forward.<br/>
+                    6. Bring your palms together in front of your chest in a prayer position, known as Anjali Mudra.<br/>
+                    7. Reach your arms overhead, with palms facing each other or touching.<br/>
+                    8. Focus and Relaxation: Soften your gaze and focus on a point in front of you or close your eyes gently if you feel comfortable. Relax your facial muscles, jaw, and shoulders while maintaining a sense of alertness and awareness.<br/>
+                    9. Hold: Hold the Mountain Pose for 30 seconds to 1 minute, or longer if you prefer. Focus on your breath and the sensations in your body. Feel rooted like a mountain, stable and grounded.<br/>
+                    10. Release: To come out of the pose, gently release your arms if they're lifted and return them to your sides. Relax any engaged muscles, but maintain the tall posture for a moment before moving on to the next pose or activity.<br/>
                 </p>
                 
             </div>

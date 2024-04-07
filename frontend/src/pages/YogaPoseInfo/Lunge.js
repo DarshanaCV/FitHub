@@ -86,32 +86,35 @@ const Lunge=()=>{
             <div className="tree-head">
                 <div className="tree-head-left">
                     <h1>Lunge Pose</h1>
-                    <p>Vrikshasana</p>
+                    <p>Anjaneyasana</p>
                     <button onClick={handleButtonClick}>Get Started</button>
                 </div>
                 <div className="tree-head-right">
-                    <p>level: Begineer</p>
+                    <p>level: Intermediate</p>
                     <p>Pronounciation</p>
-                    <p>(vrik-SHAHS-anna)</p>
+                    <p>(An-juh-ney-uh-suh-nuh)</p>
                     <p>Best time:{bestTime}s</p>
                 </div>
             </div>
             <div className="tree-video">
                 <video height="500px" width="680px" autoPlay loop muted>
-                    <source src="\media\yoga\tree.mp4" type="video/mp4" />
+                    <source src="\media\yoga\lunge.mp4" type="video/mp4" />
                 </video>
             </div>
             <div className="tree-instructions">
                 <p>
-                    Tree pose, also known as Vrksasana in Sanskrit, is a foundational yoga pose that helps improve balance, focus, and concentration. Here's how you can do the Tree pose:<br/>
-                    1. Start by standing tall in Mountain pose (Tadasana) with your feet hip-width apart and your arms at your sides.<br/>
-                    2. Shift your weight onto your left foot and lift your right foot off the ground.<br/>
-                    3. Bend your right knee and use your right hand to bring your right foot to your left inner thigh. You can place your foot on your calf or ankle if bringing it to the thigh is challenging.<br/>
-                    4. Press your right foot into your inner thigh while gently pressing your thigh back into your foot. Avoid placing your foot directly on your knee joint to prevent strain.<br/>
-                    5. Engage your core muscles and lengthen your spine. You can place your hands in prayer position at your heart center (Anjali Mudra) or extend your arms overhead, palms facing each other.<br/>
-                    6. Find a focal point in front of you to help with balance and concentration.<br/>
-                    7. Hold the pose for several breaths, maintaining steady breathing. If you feel stable, you can experiment with gently swaying your arms or slowly raising them overhead.<br/>
-                    8. To release the pose, lower your right foot down and return to Mountain pose. Repeat on the other side by shifting your weight to your right foot and lifting your left foot.<br/>
+                    Lunges help strengthen and tone the lower body muscles, including the quadriceps, hamstrings, glutes, and calves, while also improving balance and flexibility.
+                    Here's a step-by-step guide on how to do lunge:<br/>
+                    1. Start in Mountain Pose (Tadasana): Stand tall with your feet hip-width apart and your arms relaxed by your sides.<br/>
+                    2. Step Back: Take a big step back with your right foot. Keep your toes pointing forward and your heel lifted. Your feet should be about hip-width apart, with your left knee directly above your left ankle.<br/>
+                    3. Lower the Back Knee: Lower your right knee gently to the floor. You may want to pad the knee with a blanket or towel for comfort.<br/>
+                    4. Engage Core: Engage your core muscles by drawing your navel in toward your spine. This will help stabilize your torso.<br/>
+                    5. Hips Square: Keep your hips squared toward the front of the mat. You can achieve this by gently tucking your tailbone under.<br/>
+                    6. Lift the Chest: As you inhale, lift your chest and gently arch your back, allowing your shoulder blades to come together slightly.<br/>
+                    7. Arms Positioning: You can keep your hands resting on your front thigh for support, or you can raise your arms overhead, reaching them toward the ceiling. If raising your arms, keep your shoulders relaxed away from your ears.<br/>
+                    8. Neck and Head: Keep your gaze forward or slightly upward, maintaining a straight line from your head to your tailbone.<br/>
+                    9. Hold the Pose: Hold the lunge pose for several breaths, allowing your body to sink deeper into the stretch with each exhale.<br/>
+                    10. Switch Sides: To come out of the pose, gently bring your hands back to the floor and step your right foot forward to meet your left foot. Then, repeat the lunge pose on the opposite side, stepping your left foot back this time.<br/>
                 </p>
                 
             </div>
