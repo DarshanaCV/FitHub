@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { database, auth } from '../../firebase_setup/firebase';
 import { get, ref } from "firebase/database";
 import { useNavigate } from "react-router-dom";
+import { faFire } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './GuidedBreathing.css';
 
 const GuidedBreathingContainer = () => {
@@ -47,7 +49,7 @@ const GuidedBreathingContainer = () => {
         <div className="box-breathing-container">
             <div className='streak'>
                 <h1>Box Breathing</h1>
-                <p>{streak}</p>
+                <p><FontAwesomeIcon icon={faFire}/>&nbsp; {streak} </p>
             </div>
             <div className="box-breathing-info-section1">
                     <p>Box breathing is a form of yogic deep breathing employed by the United States Navy SEALs 

@@ -35,6 +35,11 @@ const Meditation = () => {
             }
         },[])
 
+    const scrollToBottom = () => {
+        const bottomElementRef = document.getElementById('bottom');
+        bottomElementRef.scrollIntoView({ behavior: 'smooth' });
+    };
+
 
     return (
         <div className='meditation-container'>
@@ -46,38 +51,40 @@ const Meditation = () => {
                     <p>Meditation gives peace and quiet aginst the stresses<br/> 
                     of everyday life and opens the door to the deepest<br/>
                     and the devine part of ourselves</p><br/>
-                    <button>Get started</button>
+                    <button onClick={scrollToBottom}>Get started</button>
                 </div>
-                <img src="./media/meditate/2.png" alt="meditate"/>
+                <img src="./media/meditate/guided-breathing.png" alt="meditate"/>
             </div>
             
-
+            <div className="box-container"  id="bottom">
+                <div className="box meditate-in-nature">
+                    <img src="./media/meditate/meditation-for-self-love.png" alt="guided-breathing" />
+                    <div className="inner-box">
+                        <h1>Guided breathing</h1>
+                        <p>Explore the transformative practice of guided breathing, featuring the proven effectiveness
+                            of the Box Breathing technique. With its structured approach, inhale, hold, exhale, and hold phases, 
+                            this method fosters deep relaxation, stress reduction, and heightened mindfulness, empowering you to 
+                            cultivate inner peace and balance.</p>
+                        <NavLink  to="/guided-breathing-page" >
+                            <button>start</button>
+                        </NavLink>
+                    </div>
+                </div>
+            </div>
             <div className="box-container">
-                <NavLink to="/guided-breathing-page" className="box guided-breathing">
-                    <img src="./media/meditate/guided-breathing2.png" alt="guided-breathing" />
-                    <p>Guided breathing</p>
-                </NavLink>
-                
-                <NavLink to="/custom-meditate" className="box guided-breathing">
-                    <img src="./media/meditate/meditation-for-self-love.png" alt="custom-meditate" />
-                    <p>Custom Meditation</p>
-                </NavLink>
-
-                <NavLink to="/guided-breathing" className="box find-inner-piece">
-                    <img src="./media/meditate/find-inner-piece.png" alt="find-inner-piece" />
-                    <p>Find inner peace</p>
-                </NavLink>
-
-                <NavLink to="/guided-breathing" className="box break-from-stress">
-                    <img src="./media/meditate/break-from-stress.png" alt="break-from-stress" />
-                    <p>Break from stress</p>
-                </NavLink>
-                
-                <NavLink className="box meditate-in-nature" to="/guided-breathing">
-                    <img src="./media/meditate/break-from-stress2.png" alt="meditate-in-nature" />
-                    <p>Meditate in nature</p>
-                </NavLink>
-
+                <div className="box find-inner-piece">
+                    <div className="inner-box">
+                        <h1>Custom meditation</h1>
+                        <p>Indulge in a tailored meditation experience with our customizable timer, seamlessly 
+                            integrated with serene background music and tranquil video visuals. Elevate your 
+                            practice with personalized settings, empowering you to find stillness, focus, and 
+                            rejuvenation amidst the harmonious blend of audio and visual elements.</p>
+                        <NavLink  to="/custom-meditate" >
+                            <button>start</button>
+                        </NavLink>
+                    </div>
+                    <img src="./media/meditate/find-inner-piece.png" alt="custom-meditate" />
+                </div>
             </div>
             
         </div>
