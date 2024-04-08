@@ -38,7 +38,7 @@ const GuidedBreathing = () => {
             }, 1000);
         }
 
-        if (progressTime >= 600) {
+        if (progressTime >= 10) {
             console.log("saved to database");
             getData()
             clearInterval(interval);
@@ -52,9 +52,9 @@ const GuidedBreathing = () => {
     }, [startBreathing, countdown, progressTime]);
    
     const getData=()=>{
-        console.log(auth.currentUser.reloadUserInfo.localId);
         const id=auth.currentUser.reloadUserInfo.localId
         const currentDate = new Date().toISOString().split('T')[0];
+        // const currentDate="2024-04-12"
         const userRef=ref(database,`/users/${id}`)
 
         get(userRef)
@@ -62,7 +62,24 @@ const GuidedBreathing = () => {
             const userData=snapshot.val()
             if(userData.streaks){
                 const lastModifiedDate=userData.streaks.boxBreathingStreak.date
-                if(lastModifiedDate===currentDate){
+                if(lastModifiedDate===currentDate && userData.streaks.boxBreathingStreak.streak==0){
+                    const newData={
+                    ...userData,
+                    streaks:{
+                        boxBreathingStreak:{
+                            date:`${currentDate}`,
+                            streak:1
+                        }
+                    }}
+                    update(userRef,newData)
+                    .then(()=>{
+                        console.log("started new streak");
+                    })
+                    .catch((error=>{
+                        console.error(error);
+                    }))
+                }
+                else if(lastModifiedDate===currentDate){
                     const newData={
                     ...userData,
                     streaks:{
@@ -79,25 +96,8 @@ const GuidedBreathing = () => {
                         console.error(error);
                     }))
                 }
-                else if(lastModifiedDate<=currentDate){
-                    if(Math.floor((new Date(currentDate) - new Date(lastModifiedDate)) / (1000 * 60 * 60 * 24))>1){
-                        const newData={
-                        ...userData,
-                        streaks:{
-                            boxBreathingStreak:{
-                                date:`${currentDate}`,
-                                streak:0
-                            }
-                        }}
-                        update(userRef,newData)
-                        .then(()=>{
-                            console.log("streak lost");
-                        })
-                        .catch((error=>{
-                            console.error(error);
-                        }))
-                    }
-                    else{
+                else if(lastModifiedDate<currentDate){
+                    if(Math.floor((new Date(currentDate) - new Date(lastModifiedDate)) / (1000 * 60 * 60 * 24))==1){
                         const newData={
                         ...userData,
                         streaks:{

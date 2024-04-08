@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { database, auth } from '../../firebase_setup/firebase';
-import { get, ref } from "firebase/database";
+import { get, ref,update } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import { faFire } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,12 +18,47 @@ const GuidedBreathingContainer = () => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
                 getData(user.uid);
+                checkStreaks()
             } else {
                 navigate("/signup");
             }
         });
         return () => unsubscribe();
     }, [navigate]);
+
+    const checkStreaks=()=>{
+        const id=auth.currentUser.reloadUserInfo.localId
+        const currentDate = new Date().toISOString().split('T')[0];
+        // const currentDate="2024-04-12"
+        const userRef=ref(database,`/users/${id}`)
+        get(userRef)
+        .then((snapshot)=>{
+            const userData=snapshot.val()
+            if(userData.streaks){
+                const lastModifiedDate=userData.streaks.boxBreathingStreak.date
+                console.log(lastModifiedDate);
+                if(lastModifiedDate<=currentDate){
+                    if(Math.floor((new Date(currentDate) - new Date(lastModifiedDate)) / (1000 * 60 * 60 * 24))>1){
+                        const newData={
+                        ...userData,
+                        streaks:{
+                            boxBreathingStreak:{
+                                date:`${currentDate}`,
+                                streak:0
+                            }
+                        }}
+                        update(userRef,newData)
+                        .then(()=>{
+                            console.log("streak lost");
+                        })
+                        .catch((error=>{
+                            console.error(error);
+                        }))
+                    }
+                }
+            }
+        })
+    }
 
     const getData = (userId) => {
         const userRef = ref(database, `/users/${userId}/streaks`);
