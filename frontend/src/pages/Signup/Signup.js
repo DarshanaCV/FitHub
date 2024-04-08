@@ -89,7 +89,29 @@ const Signup = () => {
             await set(ref(database, `users/${user.uid}`), {
             username: username,
             email: email,
-            streaks:{}
+            streaks:{},
+            yogaBestTime:{
+                goddess:{
+                    bestTime:0,
+                    date:""
+                },
+                lunge:{
+                    bestTime:0,
+                    date:""
+                },
+                mountain:{
+                    bestTime:0,
+                    date:""
+                },
+                tree:{
+                    bestTime:0,
+                    date:""
+                },
+                warrior:{
+                    bestTime:0,
+                    date:""
+                },
+            }
             });
             console.log('User signed up successfully!');
             navigate("/signup");

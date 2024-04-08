@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import {database,auth} from '../../firebase_setup/firebase';
+import { get,ref, update} from "firebase/database"
 import { faArrowRotateRight, faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './MeditationTimer.css';
@@ -18,6 +20,7 @@ const MeditationTimer = ({ duration, timerRunning, onStart, onPause, onReset, on
           if (prevTime <= 1) {
             clearInterval(intervalRef.current);
             onPause();
+            dailyCustomMeditationUpdate()
             return 0;
           }
           if (prevTime === 4) {
@@ -60,6 +63,73 @@ const MeditationTimer = ({ duration, timerRunning, onStart, onPause, onReset, on
     const seconds = time % 60;
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
+
+const dailyCustomMeditationUpdate = () => {
+    const id = auth.currentUser.reloadUserInfo.localId;
+    const currentDate = new Date().toISOString().split('T')[0];
+    // const currentDate="2024-04-09"
+    const userRef = ref(database, `/users/${id}`);
+
+    get(userRef)
+        .then((snapshot) => {
+            const userData = snapshot.val();
+            if (userData.customMeditationBestTime) {
+                const lastUpdatedDate = Object.keys(userData.customMeditationBestTime).pop();
+                if (lastUpdatedDate === currentDate && userData.customMeditationBestTime[currentDate] < duration) {
+                    // Update the best time for the current date if a better duration is achieved
+                    const newData = {
+                        ...userData,
+                        customMeditationBestTime: {
+                            ...userData.customMeditationBestTime,
+                            [currentDate]: duration
+                        }
+                    };
+                    update(userRef, newData)
+                        .then(() => {
+                            console.log("New best time updated successfully for current date with " + duration);
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                } else if (lastUpdatedDate < currentDate) {
+                    // Add a new best time for the current date if it's a new day
+                    const newData = {
+                        ...userData,
+                        customMeditationBestTime: {
+                            ...userData.customMeditationBestTime,
+                            [currentDate]: duration
+                        }
+                    };
+                    update(userRef, newData)
+                        .then(() => {
+                            console.log("New best time added successfully for current date with " + duration);
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                }
+            } else {
+                // Add the first best time for the current date if it's not available
+                const newData = {
+                    ...userData,
+                    customMeditationBestTime: {
+                        [currentDate]: duration
+                    }
+                };
+                update(userRef, newData)
+                    .then(() => {
+                        console.log("New best time added successfully for current date with " + duration);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+};
+
 
   const handleStart = () => {
     onStart();

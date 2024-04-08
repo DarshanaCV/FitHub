@@ -38,7 +38,7 @@ const GuidedBreathing = () => {
             }, 1000);
         }
 
-        if (progressTime >= 10) {
+        if (progressTime >= 300) {
             console.log("saved to database");
             getData()
             clearInterval(interval);
@@ -159,7 +159,7 @@ const GuidedBreathing = () => {
             <BoxBreathing startBreathing={startBreathing} />
             <button onClick={toggleText} className='btn-text'>{text}</button>
             <div className="rectangle"><div className={`${startProgress? 'rectangle-child' : '' }`}></div> </div>
-            <p className="progress">progress<br/>(10 mins)</p>
+            <p className="progress">progress<br/>(5 mins)</p>
 
         </div>
     );

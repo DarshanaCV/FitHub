@@ -39,7 +39,7 @@
     width: 20px;
     border-radius: 10px 10px 10px 10px;
     background: white;
-    animation: fillAnimation 600s forwards;
+    animation: fillAnimation 300s forwards;
     border-radius: 10px 10px 10px 10px;
 }
 @keyframes fillAnimation {
