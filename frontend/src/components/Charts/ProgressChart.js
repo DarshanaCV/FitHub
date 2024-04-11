@@ -3,22 +3,20 @@ import { database } from "../../firebase_setup/firebase";
 import { ref, get } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-
-const WarriorChart=()=>{
+import "./Chart.css"
+const ProgressChart = ({ pose }) => {
     const [chartData, setChartData] = useState([]);
     const navigate = useNavigate();
 
-    React.useEffect(() => {
+    useEffect(() => {
         const userToken = localStorage.getItem('userToken');
-        // console.log("signed in");
         if (!userToken) {
             navigate("/signup");
+            return;
         }
-    }, []);
 
-    useEffect(() => {
         const userId = localStorage.getItem('uid');
-        const userRef = ref(database, `/users/${userId}/yogaBestTime/warrior`);
+        const userRef = ref(database, `/users/${userId}/yogaBestTime/${pose}`);
         get(userRef)
             .then((snapshot) => {
                 const data = snapshot.val();
@@ -32,30 +30,27 @@ const WarriorChart=()=>{
             .catch((error) => {
                 console.error(error);
             });
-    }, [navigate]);
+    }, [navigate, pose]);
 
-    // Custom formatter function to display only the date part
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return date.toLocaleDateString('en-US', options);
     };
 
-    return(
-        <div style={{ width: '80%', margin: '0 auto' }}>
-            <h4>Warrior Pose</h4>
-            <LineChart width={1000} height={400} data={chartData}>
+    return (
+        <div className="chart-container">
+            <p>{`${pose} pose`}</p>
+            <LineChart width={800} height={400} data={chartData} className="chart">
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" tickFormatter={formatDate} />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="time" stroke="#8884d8" />
+                <Line type="monotone" dataKey="time" stroke="#8884d8" strokeWidth={2} />
             </LineChart>
         </div>
-    )
-    
-
+    );
 }
 
-export default WarriorChart
+export default ProgressChart;

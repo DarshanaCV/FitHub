@@ -14,6 +14,7 @@ import Warrior from './pages/YogaPoseInfo/Warrior';
 import Mountain from './pages/YogaPoseInfo/Mountain';
 import Lunge from './pages/YogaPoseInfo/Lunge';
 import Goddess from './pages/YogaPoseInfo/Goddess';
+import Reports from './pages/Reports/Reports';
 const App = () => {
 
     return (
@@ -32,6 +33,7 @@ const App = () => {
                 <Route path='/guided-breathing' element={<GuidedBreathing/>}></Route>
                 <Route path='/guided-breathing-page' element={<GuidedBreathingContainer/>}></Route>
                 <Route path='/custom-meditate' element={<CustomMeditate/>}></Route>
+                <Route path='/reports' element={<Reports/>}></Route>
             </Routes>
             {/* <Footer /> */}
         </BrowserRouter>

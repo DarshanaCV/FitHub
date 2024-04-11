@@ -1,11 +1,6 @@
 import React from "react";
-import GoddessChart from "../../components/Charts/GoddessChart";
-import LungeChart from "../../components/Charts/LungeChart";
 import { useNavigate } from 'react-router-dom';
 import "./Home.css";
-import TreeChart from "../../components/Charts/TreeChart";
-import MountainChart from "../../components/Charts/MountainChart";
-import WarriorChart from "../../components/Charts/WarriorChart";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -17,14 +12,10 @@ const Home = () => {
         }
     }, []);
 
+
     return (
         <div className="home-component">
-            <h1>How does the App work?</h1>
-            <GoddessChart /><br/>
-            <LungeChart /><br/>
-            <TreeChart/><br/>
-            <MountainChart/><br/>
-            <WarriorChart/>
+            <h1>Home</h1>
         </div>
     );
 };

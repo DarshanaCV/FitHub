@@ -1,7 +1,7 @@
 import {NavLink} from "react-router-dom"
 import {auth} from "../../firebase_setup/firebase"
 import { useNavigate } from 'react-router-dom';
-import { faHome, faSpa,faUserPlus,faArrowRightToBracket ,faChildReaching } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faSpa,faChartSimple,faArrowRightToBracket ,faChildReaching } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Navbar.css"
 const Navbar = () => {
@@ -28,8 +28,8 @@ const Navbar = () => {
             </div>
             
             <div className="navlink">
-                <FontAwesomeIcon className="fas" icon={faUserPlus} />
-                <NavLink to="/signup" className="navItem">Signup</NavLink>
+                <FontAwesomeIcon className="fas" icon={faChartSimple} />
+                <NavLink to="/reports" className="navItem">Reports</NavLink>
             </div>
 
             <div className="navlink">
