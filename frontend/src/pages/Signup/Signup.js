@@ -26,11 +26,13 @@ const Signup = () => {
 
     const onLogin = (e) => {
         e.preventDefault();
-        setPersistence(auth, browserLocalPersistence).then(() => {
-            signInWithEmailAndPassword(auth, emaillogin, passwordlogin).then((userCredential) => {
-                const userToken = userCredential.user.getIdToken();
-                localStorage.setItem('userToken', userToken);
-                navigate("/")
+        setPersistence(auth, browserLocalPersistence)
+            .then(() => {
+                signInWithEmailAndPassword(auth, emaillogin, passwordlogin).then(async (userCredential) => {
+                    const userToken = await userCredential.user.getIdToken();
+                    localStorage.setItem('userToken', userToken);
+                    localStorage.setItem('uid',auth.currentUser.uid)
+                    navigate("/")
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -86,30 +88,26 @@ const Signup = () => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
+            const currentDate=new Date().toISOString().split('T')[0];
             await set(ref(database, `users/${user.uid}`), {
             username: username,
             email: email,
             streaks:{},
             yogaBestTime:{
                 goddess:{
-                    bestTime:0,
-                    date:""
+                    [currentDate]:0
                 },
                 lunge:{
-                    bestTime:0,
-                    date:""
+                    [currentDate]:0
                 },
                 mountain:{
-                    bestTime:0,
-                    date:""
+                    [currentDate]:0
                 },
                 tree:{
-                    bestTime:0,
-                    date:""
+                    [currentDate]:0
                 },
                 warrior:{
-                    bestTime:0,
-                    date:""
+                    [currentDate]:0
                 },
             }
             });

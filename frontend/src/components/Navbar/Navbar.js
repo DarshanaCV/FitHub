@@ -1,7 +1,7 @@
 import {NavLink} from "react-router-dom"
 import {auth} from "../../firebase_setup/firebase"
 import { useNavigate } from 'react-router-dom';
-import { faHome, faSpa,faUserPlus,faArrowRightToBracket, faNoteSticky ,faChildReaching } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faSpa,faUserPlus,faArrowRightToBracket ,faChildReaching } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Navbar.css"
 const Navbar = () => {

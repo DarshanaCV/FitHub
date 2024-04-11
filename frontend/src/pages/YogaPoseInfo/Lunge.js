@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 const Lunge=()=>{
     const [bestTime,setBestTime]=React.useState(0)
+    const [time, setTime] = React.useState(0);
+
     const navigate = useNavigate();
     
     React.useEffect(()=>{
@@ -17,64 +19,77 @@ const Lunge=()=>{
         }
     },[])
 
-    React.useEffect(()=>{
-        const unsubscribe = auth.onAuthStateChanged(user => {
+    const getBestTime = (userId) => {
+        const id = userId;
+        const currentDate = new Date().toISOString().split('T')[0];
+        const userRef = ref(database, `/users/${id}`);
+        get(userRef)
+            .then((snapshot) => {
+                const userData = snapshot.val();
+                const lunge_data = userData?.yogaBestTime?.lunge || {};
+                let maxBestTime = -Infinity;
+                for (const date in lunge_data) {
+                    if (lunge_data[date] > maxBestTime) {
+                        maxBestTime = lunge_data[date];
+                    }
+                }
+                setBestTime(maxBestTime);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const updateBestTime = (userId, newTime) => {
+    const currentDate = new Date().toISOString().split('T')[0];
+    const userRef = ref(database, `/users/${userId}`);
+    get(userRef)
+        .then((snapshot) => {
+            const userData = snapshot.val();
+            let newBestTime = { ...userData.yogaBestTime.lunge };
+            console.log(newBestTime);
+            if (!newBestTime[currentDate] || newTime < newBestTime[currentDate]) {
+                newBestTime[currentDate] = newTime;
+            }
+            const newData = {
+                ...userData,
+                yogaBestTime: {
+                    ...userData.yogaBestTime,
+                    lunge: newBestTime,
+                },
+            };
+            update(userRef, newData)
+                .then(() => {
+                    console.log("Yoga best time updated successfully");
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    };
+
+    React.useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
-                getData(user.uid);
+                getBestTime(user.uid);
             } else {
                 navigate("/signup");
             }
         });
         return () => unsubscribe();
-    },[bestTime])
-
-    const getData=()=>{
-        console.log(auth.currentUser.reloadUserInfo.localId);
-        const id=auth.currentUser.reloadUserInfo.localId
-        const currentDate = new Date().toISOString().split('T')[0];
-        const userRef=ref(database,`/users/${id}`)
-
-        get(userRef)
-        .then((snapshot)=>{
-            const userData=snapshot.val()
-            if(userData.yogaBestTime.lunge.bestTime<bestTime){
-                const newData={
-                    ...userData,
-                    yogaBestTime:{
-                        ...userData.yogaBestTime,
-                        lunge:{
-                            date:`${currentDate}`,
-                            bestTime:bestTime
-                        }
-                    }
-                }
-                update(userRef,newData)
-                .then(()=>{
-                    setBestTime(bestTime)
-                    console.log(`best time updated successfully ${bestTime}`);
-                })
-                .catch((error)=>{
-                    console.error(error);
-                })
-            }
-            else{
-                console.log("best time is greater");
-                setBestTime(userData.yogaBestTime.lunge.bestTime)
-            }
-            
-        })
-        .catch((error)=>{
-            console.error(error);
-        })
-    }
+    }, []);
         
     const handleButtonClick = async () => {
         const modelName="lunge_pose"
         console.log("Button clicked:", modelName);
         try {
             const result = await axios.post('http://localhost:5000/run-model', { modelName });
-            setBestTime(result.data.best_time)
-            console.log(result);
+            setTime(result.data.best_time);
+            updateBestTime(auth.currentUser.uid, result.data.best_time);
             
         } catch (error) {
             console.error('Error sending request to Flask:', error.message);
