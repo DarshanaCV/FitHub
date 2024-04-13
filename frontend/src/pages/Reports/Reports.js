@@ -1,5 +1,6 @@
 import React from "react";
 import ProgressChart from "../../components/Charts/ProgressChart";
+import MeditationChart from "../../components/Charts/MeditationChart";
 import { useNavigate } from 'react-router-dom';
 import "./Reports.css";
 
@@ -35,11 +36,17 @@ const Reports = () => {
 
     return (
         <div className="reports-component">
+            <div className="meditation-chart">
+                <h1>Custom Meditation</h1>
+                <MeditationChart/>
+            </div>
+            
             <div className="yoga-pose-progress">
+                <h1>Yoga progress chart</h1>
                 <div className="select-pose">
                     {displayPoseCard()}
                 </div>
-                {poseName && <ProgressChart pose={poseName} />} {/* Render ProgressChart only if poseName is set */}
+                {poseName && <ProgressChart pose={poseName} />}
             </div>
         </div>
     );

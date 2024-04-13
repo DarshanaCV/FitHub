@@ -40,7 +40,6 @@ const ProgressChart = ({ pose }) => {
 
     return (
         <div className="chart-container">
-            <p>{`${pose} pose`}</p>
             <LineChart width={800} height={400} data={chartData} className="chart">
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" tickFormatter={formatDate} />

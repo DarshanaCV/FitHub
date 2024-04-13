@@ -84,8 +84,10 @@
     justify-content: space-between;
     align-items: baseline;
     width: 100%;
+    margin: 0%;
+    /* height: 400px; */
     background-color: rgb(246, 246, 246);
-    padding: 0% 7% 1% 5%;
+    padding: 10% 7% 3% 5%;
     box-shadow: 0 1px 35px rgba(86, 86, 86, 0.155);
 }
 .streak p{
@@ -95,12 +97,12 @@
     line-height: 1.7;
     letter-spacing: 0.3px;
     font-size: large;
-    margin-top: -2%;
+    /* margin-top: -2%; */
 }
 .right img{
     height: 400px;
     width: 680px;
-    margin-top: -4%;
+    /* margin-top: -4%; */
 }
 .box-breathing-info-section2{
     display: flex;
@@ -127,7 +129,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: -2%;
+    /* margin-top: -2%; */
     padding: 0% 0% 5% 5%;
 
 }
