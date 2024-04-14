@@ -1,6 +1,6 @@
 import React from 'react';
 import BoxBreathing from "../../components/BoxBreathing/BoxBreathing";
-import { NavLink,useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {database,auth} from '../../firebase_setup/firebase';
 import { get,ref, update} from "firebase/database"
 import './GuidedBreathing.css';
@@ -21,7 +21,6 @@ const GuidedBreathing = () => {
         }
     },[])
 
-    //for the countdown
     React.useEffect(() => {
         let interval;
 
@@ -53,82 +52,59 @@ const GuidedBreathing = () => {
    
     const getData=()=>{
         const id=auth.currentUser.reloadUserInfo.localId
-        const currentDate = new Date().toISOString().split('T')[0];
-        // const currentDate="2024-04-12"
+        // const currentDate = new Date().toISOString().split('T')[0];
+        const currentDate="2024-04-16"
         const userRef=ref(database,`/users/${id}`)
 
         get(userRef)
         .then((snapshot)=>{
             const userData=snapshot.val()
-            if(userData.streaks){
-                const lastModifiedDate=userData.streaks.boxBreathingStreak.date
-                if(lastModifiedDate===currentDate && userData.streaks.boxBreathingStreak.streak==0){
-                    const newData={
-                    ...userData,
-                    streaks:{
-                        boxBreathingStreak:{
-                            date:`${currentDate}`,
-                            streak:1
-                        }
-                    }}
-                    update(userRef,newData)
-                    .then(()=>{
-                        console.log("started new streak");
-                    })
-                    .catch((error=>{
-                        console.error(error);
-                    }))
-                }
-                else if(lastModifiedDate===currentDate){
-                    const newData={
-                    ...userData,
-                    streaks:{
-                        boxBreathingStreak:{
-                            date:`${currentDate}`,
-                            streak:userData.streaks.boxBreathingStreak.streak
-                        }
-                    }}
-                    update(userRef,newData)
-                    .then(()=>{
-                        console.log("daily streak exists");
-                    })
-                    .catch((error=>{
-                        console.error(error);
-                    }))
-                }
-                else if(lastModifiedDate<currentDate){
-                    if(Math.floor((new Date(currentDate) - new Date(lastModifiedDate)) / (1000 * 60 * 60 * 24))==1){
-                        const newData={
-                        ...userData,
-                        streaks:{
-                            boxBreathingStreak:{
-                                date:`${currentDate}`,
-                                streak:userData.streaks.boxBreathingStreak.streak+1
-                            }
-                        }}
-                        update(userRef,newData)
-                        .then(()=>{
-                            console.log("daily streak updated successfully");
-                        })
-                        .catch((error=>{
-                            console.error(error);
-                        }))
-                    }
-                }
-            }
-            else{
+            const lastObjectNumber=parseInt(Object.keys(userData.streaks.boxBreathingstreak).pop())
+            const lastModifiedData=(userData.streaks.boxBreathingstreak[lastObjectNumber])
+            const oldKey=String(lastObjectNumber)
+            const newKey=String(lastObjectNumber+1)
+            console.log(lastModifiedData.date);
+            console.log(lastModifiedData.count);
+            console.log(lastObjectNumber);
+            //update the existing count
+            if(userData.streaks.boxBreathingstreak[lastObjectNumber].date===currentDate){
                 const newData={
                     ...userData,
                     streaks:{
-                        boxBreathingStreak:{
-                            date:`${currentDate}`,
-                            streak:1
+                        boxBreathingstreak:{
+                            ...userData.streaks.boxBreathingstreak,
+                            [oldKey]:{
+                                date:`${currentDate}`,
+                                count:lastModifiedData.count+1
+                            }
                         }
                     }
                 }
                 update(userRef,newData)
                 .then(()=>{
-                    console.log("new streak added successfully");
+                    console.log("updated the count successfully");
+                })
+                .catch((error)=>{
+                    console.error(error);
+                })
+            }
+            //create a new date
+            else if(currentDate!==userData.streaks.boxBreathingstreak[lastObjectNumber].date){
+                const newData={
+                    ...userData,
+                    streaks:{
+                        boxBreathingstreak:{
+                            ...userData.streaks.boxBreathingstreak,
+                            [newKey]:{
+                                date:currentDate,
+                                count:1
+                            }
+                        }
+                    }
+                }
+                update(userRef,newData)
+                .then(()=>{
+                    console.log("new date added successfully");
                 })
                 .catch((error)=>{
                     console.error(error);

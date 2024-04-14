@@ -18,37 +18,44 @@
     height: 20vh;
 }
 /* MeditationChart.css */
+
+.custom-container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
+.heatmap-button {
+  padding: 2%;
+  font-size: xx-large;
+  background: none;
+  cursor: pointer;
+  margin: 0% 2%;
+}
+/* Define CSS classes for color-coding the heatmap */
 .color-empty {
-  fill: #e2e2e2;
+  fill: #ebedf0;
+  /* Light grey for empty cells */
 }
 
-.color-scale-1 {
+.color-no-contribution {
+  fill: #ebedf0;
+  /* Light grey for cells with no contributions */
+}
+
+.color-low-contribution {
   fill: #c6e48b;
+  /* Light green for cells with low contributions */
 }
 
-.color-scale-2 {
+.color-medium-contribution {
   fill: #7bc96f;
+  /* Medium green for cells with medium contributions */
 }
 
-.color-scale-3 {
+.color-high-contribution {
   fill: #239a3b;
-}
-.heatmap-button-left{
-  padding: 3%;
-  border-radius: 15px;
-  margin-right: 5%;
-  margin-left: 11%;
-  width: 150px;
-  font-size: medium;
-}
-.heatmap-button-right {
-  padding: 3%;
-  border-radius: 15px;
-  margin-right: 5%;
-  margin-left: 5%;
-  width: 150px;
-  font-size: medium;
-}
-.calendar-heatmap{
-  margin-left: 20%;
+  /* Dark green for cells with high contributions */
 }

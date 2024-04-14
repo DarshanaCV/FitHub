@@ -37,7 +37,7 @@ const Reports = () => {
     return (
         <div className="reports-component">
             <div className="meditation-chart">
-                <h1>Custom Meditation</h1>
+                <h1>Box Breathing</h1>
                 <MeditationChart/>
             </div>
             

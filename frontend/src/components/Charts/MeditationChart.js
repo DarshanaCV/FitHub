@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import CalendarHeatmap from 'react-calendar-heatmap';
-import 'react-calendar-heatmap/dist/styles.css';
 import { database } from '../../firebase_setup/firebase';
 import { useNavigate } from 'react-router-dom';
 import { get, ref } from 'firebase/database';
+import CalendarHeatmap from 'react-calendar-heatmap';
+import 'react-calendar-heatmap/dist/styles.css';
 import './Chart.css';
 
 const MeditationChart = () => {
   const [meditationsData, setMeditationsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentMonth, setCurrentMonth] = useState(new Date('2024-04-01'));
+  const [startDate, setStartDate] = useState(new Date('2024-01-01'));
+  const [endDate, setEndDate] = useState(new Date('2024-04-30')); // Adjust as needed
   const navigate = useNavigate();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchData = () => {
       const userToken = localStorage.getItem('userToken');
       if (!userToken) {
@@ -20,19 +21,17 @@ const MeditationChart = () => {
         return;
       }
       const userId = localStorage.getItem('uid');
-      const userRef = ref(database, `/users/${userId}/streaks/boxBreathingStreak`);
+      const userRef = ref(database, `/users/${userId}/streaks/boxBreathingstreak`);
+
       get(userRef)
         .then((snapshot) => {
           if (snapshot.exists()) {
             const data = snapshot.val();
-            const chartDataArray = Object.entries(data)
-              .filter(([date]) => new Date(date).getFullYear() === currentMonth.getFullYear() && new Date(date).getMonth() === currentMonth.getMonth())
-              .map(([date, count]) => ({
-                date,
-                count,
-              }));
-            setMeditationsData(chartDataArray);
-            console.log('Meditations data:', chartDataArray[0]);
+            const formattedData = Object.values(data).map(({ date, count }) => ({
+              date,
+              count: parseInt(count),
+            }));
+            setMeditationsData(formattedData);
           } else {
             console.log('No data available');
             setMeditationsData([]);
@@ -45,68 +44,55 @@ const MeditationChart = () => {
         });
     };
     fetchData();
-  }, [navigate, currentMonth]);
+  }, [navigate]);
 
-  const getClassNameForValue = (value) => {
-    if (!value || value.count === 0) {
-      return 'color-empty';
-    } else if (value.count === 1) {
-      return 'color-scale-1';
-    } else if (value.count === 2) {
-      return 'color-scale-2';
-    } else if (value.count >= 3) {
-      return 'color-scale-3';
-    }
+  const handlePreviousMonths = () => {
+    const newStartDate = new Date(startDate);
+    const newEndDate = new Date(endDate);
+    newStartDate.setMonth(newStartDate.getMonth() - 3);
+    newEndDate.setMonth(newEndDate.getMonth() - 3);
+    setStartDate(newStartDate);
+    setEndDate(newEndDate);
   };
 
-  const getTooltipDataAttrs = (value) => {
-    return value
-      ? {
-          'data-count': value.count,
-        }
-      : {};
-  };
-
-  const handlePreviousMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
-  };
-
-  const handleNextMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1));
+  const handleNextMonths = () => {
+    const newStartDate = new Date(startDate);
+    const newEndDate = new Date(endDate);
+    newStartDate.setMonth(newStartDate.getMonth() +3);
+    newEndDate.setMonth(newEndDate.getMonth() +3);
+    setStartDate(newStartDate);
+    setEndDate(newEndDate);
   };
 
   if (loading) {
     return <p>Loading...</p>;
   }
 
-  const startDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
-  const endDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
-  console.log('startDate:', startDate);
-
   return (
-    <div>
-      <h2>My Heatmap</h2>
-      <div className="heatmap-container">
-        <button onClick={handlePreviousMonth} className="heatmap-button-left">
-          Previous Month
-        </button>
-        <span>{new Date(currentMonth).toLocaleDateString('default', { month: 'long', year: 'numeric' })}</span>
-        <button onClick={handleNextMonth} className="heatmap-button-right">
-          Next Month
-        </button>
-        <div className="calendar-heatmap">
+    <div className='custom-container'>
+        <button onClick={handlePreviousMonths} className='heatmap-button'>{'<'}</button>
         <CalendarHeatmap
           startDate={startDate}
           endDate={endDate}
           values={meditationsData}
-          showWeekdayLabels={true}
-          horizontal={false}
-          titleForValue={(value) => (value ? `${value.date}: ${value.count}` : null)}
-          classForValue={getClassNameForValue}
-          tooltipDataAttrs={getTooltipDataAttrs}
+          classForValue={(value) => {
+            if (!value) {
+              return 'color-empty';
+            }
+            if (value.count === 0) {
+              return 'color-no-contribution';
+            }
+            if (value.count < 3) {
+              return 'color-low-contribution';
+            }
+            if (value.count < 5) {
+              return 'color-medium-contribution';
+            }
+            return 'color-high-contribution';
+          }}
+          titleForValue={(value) => (value ? `${value.date}: ${value.count}` : `No data`)}
         />
-        </div>
-      </div>
+        <button onClick={handleNextMonths} className='heatmap-button'>{'>'}</button>
     </div>
   );
 };

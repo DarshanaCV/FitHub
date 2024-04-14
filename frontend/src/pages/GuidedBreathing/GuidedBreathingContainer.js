@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { database, auth } from '../../firebase_setup/firebase';
-import { get, ref,update } from "firebase/database";
+import { get, ref } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import { faFire } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './GuidedBreathing.css';
 
 const GuidedBreathingContainer = () => {
-    const [streak, setStreak] = useState("0 Streak");
+    const [streak, setStreak] = useState(0);
     const navigate = useNavigate();
 
-    useEffect(()=>{
+    useEffect(() => {
         window.scrollTo(0, 0);
-    },[])
+    }, []);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
                 getData(user.uid);
-                checkStreaks()
             } else {
                 navigate("/signup");
             }
@@ -26,61 +25,59 @@ const GuidedBreathingContainer = () => {
         return () => unsubscribe();
     }, [navigate]);
 
-    const checkStreaks=()=>{
-        const id=auth.currentUser.reloadUserInfo.localId
-        const currentDate = new Date().toISOString().split('T')[0];
-        // const currentDate="2024-04-12"
-        const userRef=ref(database,`/users/${id}`)
-        get(userRef)
-        .then((snapshot)=>{
-            const userData=snapshot.val()
-            if(userData.streaks){
-                const lastModifiedDate=userData.streaks.boxBreathingStreak.date
-                console.log(lastModifiedDate);
-                if(lastModifiedDate<=currentDate){
-                    if(Math.floor((new Date(currentDate) - new Date(lastModifiedDate)) / (1000 * 60 * 60 * 24))>1){
-                        const newData={
-                        ...userData,
-                        streaks:{
-                            boxBreathingStreak:{
-                                date:`${currentDate}`,
-                                streak:0
-                            }
-                        }}
-                        update(userRef,newData)
-                        .then(()=>{
-                            console.log("streak lost");
-                        })
-                        .catch((error=>{
-                            console.error(error);
-                        }))
+const getData = (userId) => {
+    const userRef = ref(database, `/users/${userId}`);
+
+    get(userRef)
+        .then(snapshot => {
+            const userData = snapshot.val();
+            if (userData.streaks && userData.streaks.boxBreathingstreak) {
+                const streakData = Object.values(userData.streaks.boxBreathingstreak);
+                let currentStreak = 0;
+                let longestStreak = 0;
+                let prevDate = null;
+
+                streakData.forEach((entry) => {
+                    const currentDate = new Date(entry.date);
+                    if (prevDate && isConsecutive(prevDate, currentDate)) {
+                        currentStreak++;
+                        console.log(streak);
+                    } else {
+                        if (currentStreak > longestStreak) {
+                            longestStreak = currentStreak;
+                        }
+                        currentStreak = 1; // Reset streak to 1 for the current date
                     }
+                    prevDate = currentDate;
+                });
+
+                if (currentStreak > longestStreak) {
+                    longestStreak = currentStreak;
                 }
+
+                setStreak(longestStreak);
+            } else {
+                setStreak(0);
             }
         })
-    }
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
+}
 
-    const getData = (userId) => {
-        const userRef = ref(database, `/users/${userId}/streaks`);
-
-        get(userRef)
-            .then(snapshot => {
-                const userData = snapshot.val();
-                if (userData && userData.boxBreathingStreak && userData.boxBreathingStreak.streak) {
-                    const userStreak = userData.boxBreathingStreak.streak;
-                    setStreak(userStreak === 1 ? `${userStreak} Streak` : `${userStreak} Streaks`);
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-            });
-    };
+const isConsecutive = (prevDate, currentDate) => {
+    const oneDay = 24 * 60 * 60 * 1000; // One day in milliseconds
+    const prevTime = prevDate.getTime();
+    const currentTime = currentDate.getTime();
+    return Math.round(Math.abs((prevTime - currentTime) / oneDay)) === 1;
+}
 
     const handleNavigate = () => {
         navigate('/guided-breathing');
     };
 
-    return (
+    
+return (
         <div className="box-breathing-container">
             <div className='streak'>
                 <h1>Box Breathing</h1>

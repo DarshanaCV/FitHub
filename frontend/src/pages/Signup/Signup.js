@@ -7,6 +7,8 @@ import { ref, set } from 'firebase/database';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { faUser, faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import BoxBreathing from "../../components/BoxBreathing/BoxBreathing";
+import { counter } from "@fortawesome/fontawesome-svg-core";
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -92,7 +94,14 @@ const Signup = () => {
             await set(ref(database, `users/${user.uid}`), {
             username: username,
             email: email,
-            streaks:{},
+            streaks:{
+                boxBreathingstreak:{
+                    0:{
+                        date:currentDate,
+                        count:0
+                    }
+                }
+            },
             yogaBestTime:{
                 goddess:{
                     [currentDate]:0
@@ -215,3 +224,4 @@ const Signup = () => {
 }
 
 export default Signup
+
