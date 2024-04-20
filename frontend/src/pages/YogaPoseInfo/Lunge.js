@@ -10,9 +10,9 @@ const Lunge=()=>{
     const [time, setTime] = React.useState(0);
     const navigate = useNavigate();
     console.log(bestTime);
+
     React.useEffect(()=>{
         const userToken = localStorage.getItem('userToken');
-        console.log("signed in");
         if(!userToken){
             navigate("/signup")
         }
@@ -40,7 +40,8 @@ const Lunge=()=>{
     };
 
     const updateBestTime = (userId, newTime) => {
-    const currentDate = new Date().toISOString().split('T')[0];
+    // const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate = '2024-04-12'
     const userRef = ref(database, `/users/${userId}`);
     get(userRef)
         .then((snapshot) => {

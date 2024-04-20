@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Tree=()=>{
     const [bestTime,setBestTime]=React.useState(0)
+    const [time,setTime]=React.useState(0)
     const navigate = useNavigate();
     
     React.useEffect(()=>{
@@ -20,7 +21,7 @@ const Tree=()=>{
     React.useEffect(()=>{
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
-                getData(user.uid);
+                getBestTime(user.uid);
             } else {
                 navigate("/signup");
             }
@@ -28,53 +29,68 @@ const Tree=()=>{
         return () => unsubscribe();
     },[bestTime])
 
-    const getData=()=>{
-        console.log(auth.currentUser.reloadUserInfo.localId);
-        const id=auth.currentUser.reloadUserInfo.localId
-        const currentDate = new Date().toISOString().split('T')[0];
-        const userRef=ref(database,`/users/${id}`)
 
+    const getBestTime = (userId) => {
+        const id = userId;
+        // const currentDate = new Date().toISOString().split('T')[0];
+        const userRef = ref(database, `/users/${id}`);
         get(userRef)
-        .then((snapshot)=>{
-            const userData=snapshot.val()
-            if(userData.yogaBestTime.tree.bestTime<bestTime){
-                const newData={
-                    ...userData,
-                    yogaBestTime:{
-                        ...userData.yogaBestTime,
-                        tree:{
-                            date:`${currentDate}`,
-                            bestTime:bestTime
-                        }
+            .then((snapshot) => {
+                const userData = snapshot.val();
+                const tree_data = userData?.yogaBestTime?.tree || {};
+                let maxBestTime = -Infinity;
+                for (const date in tree_data) {
+                    if (tree_data[date] > maxBestTime) {
+                        maxBestTime = tree_data[date];
                     }
                 }
-                update(userRef,newData)
-                .then(()=>{
-                    setBestTime(bestTime)
-                    console.log(`best time updated successfully ${bestTime}`);
+                setBestTime(maxBestTime);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const updateBestTime = (userId, newTime) => {
+    const currentDate = new Date().toISOString().split('T')[0];
+    // const currentDate = '2024-04-17'
+    const userRef = ref(database, `/users/${userId}`);
+    get(userRef)
+        .then((snapshot) => {
+            const userData = snapshot.val();
+            let newBestTime = { ...userData.yogaBestTime.tree };
+            console.log(newBestTime);
+            if (!newBestTime[currentDate] || newTime < newBestTime[currentDate]) {
+                newBestTime[currentDate] = newTime;
+            }
+            const newData = {
+                ...userData,
+                yogaBestTime: {
+                    ...userData.yogaBestTime,
+                    tree: newBestTime,
+                },
+            };
+            update(userRef, newData)
+                .then(() => {
+                    console.log("Yoga best time updated successfully");
+                    window.location.reload();
                 })
-                .catch((error)=>{
+                .catch((error) => {
                     console.error(error);
-                })
-            }
-            else{
-                console.log("best time is greater");
-                setBestTime(userData.yogaBestTime.tree.bestTime)
-            }
-            
+                });
         })
-        .catch((error)=>{
+        .catch((error) => {
             console.error(error);
-        })
-    }
+        });
+    };
         
     const handleButtonClick = async () => {
         const modelName="tree_pose"
         console.log("Button clicked:", modelName);
         try {
             const result = await axios.post('http://localhost:5000/run-model', { modelName });
-            setBestTime(result.data.best_time)
-            console.log(result);
+            setTime(result.data.best_time);
+            updateBestTime(auth.currentUser.uid, result.data.best_time);
             
         } catch (error) {
             console.error('Error sending request to Flask:', error.message);

@@ -40,7 +40,8 @@ const Goddess = () => {
     };
 
     const updateBestTime = (userId, newTime) => {
-    const currentDate = new Date().toISOString().split('T')[0];
+    // const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate = '2024-04-12'
     const userRef = ref(database, `/users/${userId}`);
     get(userRef)
         .then((snapshot) => {
