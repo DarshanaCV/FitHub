@@ -124,8 +124,11 @@ const Signup = () => {
                 warrior:{
                     [currentDate]:0
                 },
+            },
+            dailyMood:{
+                [currentDate]:""
             }
-            });
+        });
             console.log('User signed up successfully!');
             navigate("/signup");
             setIsActive(current => !current);

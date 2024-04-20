@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import "./Home.css";
+import MoodCounter from "../../components/MoodCounter/MoodCounter";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Home = () => {
 
     return (
         <div className="home-component">
-            <h1>Home</h1>
+            <MoodCounter />
         </div>
     );
 };

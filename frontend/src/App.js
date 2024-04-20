@@ -15,6 +15,7 @@ import Mountain from './pages/YogaPoseInfo/Mountain';
 import Lunge from './pages/YogaPoseInfo/Lunge';
 import Goddess from './pages/YogaPoseInfo/Goddess';
 import Reports from './pages/Reports/Reports';
+import Footer from './components/Footer/Footer';
 const App = () => {
 
     return (
@@ -35,7 +36,7 @@ const App = () => {
                 <Route path='/custom-meditate' element={<CustomMeditate/>}></Route>
                 <Route path='/reports' element={<Reports/>}></Route>
             </Routes>
-            {/* <Footer /> */}
+            <Footer />
         </BrowserRouter>
     );
 };

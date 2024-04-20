@@ -52,6 +52,7 @@
 
 .box-container {
     height: 80vh;
+    margin-bottom: 5%;
 }
 .box-container .box {
     background-color: rgb(255, 255, 255);
