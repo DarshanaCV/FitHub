@@ -52,8 +52,8 @@ const GuidedBreathing = () => {
    
     const getData=()=>{
         const id=auth.currentUser.reloadUserInfo.localId
-        // const currentDate = new Date().toISOString().split('T')[0];
-        const currentDate="2024-04-16"
+        const currentDate = new Date().toISOString().split('T')[0];
+        // const currentDate="2024-04-20"
         const userRef=ref(database,`/users/${id}`)
 
         get(userRef)

@@ -41,21 +41,15 @@ const getData = (userId) => {
                     const currentDate = new Date(entry.date);
                     if (prevDate && isConsecutive(prevDate, currentDate)) {
                         currentStreak++;
-                        console.log(streak);
                     } else {
                         if (currentStreak > longestStreak) {
                             longestStreak = currentStreak;
                         }
-                        currentStreak = 1; // Reset streak to 1 for the current date
+                        currentStreak = 1;
                     }
                     prevDate = currentDate;
                 });
-
-                if (currentStreak > longestStreak) {
-                    longestStreak = currentStreak;
-                }
-
-                setStreak(longestStreak);
+                setStreak(currentStreak);
             } else {
                 setStreak(0);
             }
