@@ -1,6 +1,7 @@
 import React from "react";
 import ProgressChart from "../../components/Charts/ProgressChart";
 import MeditationChart from "../../components/Charts/MeditationChart";
+import CustomMeditationChart from "../../components/Charts/CustomMeditationChart";
 import { useNavigate } from 'react-router-dom';
 import "./Reports.css";
 
@@ -39,6 +40,8 @@ const Reports = () => {
             <div className="meditation-chart">
                 <h1>Box Breathing</h1>
                 <MeditationChart/>
+                <h1>Custom Meditation</h1>
+                <CustomMeditationChart/>
             </div>
             
             <div className="yoga-pose-progress">

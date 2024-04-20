@@ -10,6 +10,7 @@ const Goddess = () => {
     const [time, setTime] = useState(0);
     const navigate = useNavigate();
 
+    console.log(bestTime);
     useEffect(() => {
         const userToken = localStorage.getItem('userToken');
         if (!userToken) {

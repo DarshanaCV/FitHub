@@ -8,9 +8,8 @@ import { useNavigate } from "react-router-dom";
 const Lunge=()=>{
     const [bestTime,setBestTime]=React.useState(0)
     const [time, setTime] = React.useState(0);
-
     const navigate = useNavigate();
-    
+    console.log(bestTime);
     React.useEffect(()=>{
         const userToken = localStorage.getItem('userToken');
         console.log("signed in");

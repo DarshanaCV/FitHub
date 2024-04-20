@@ -94,6 +94,12 @@ const Signup = () => {
             await set(ref(database, `users/${user.uid}`), {
             username: username,
             email: email,
+            customMeditationBestTime:{
+                0:{
+                    date:currentDate,
+                    count:0
+                }
+            },
             streaks:{
                 boxBreathingstreak:{
                     0:{

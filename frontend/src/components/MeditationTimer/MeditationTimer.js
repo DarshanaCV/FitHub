@@ -66,63 +66,56 @@ const MeditationTimer = ({ duration, timerRunning, onStart, onPause, onReset, on
 
 const dailyCustomMeditationUpdate = () => {
     const id = auth.currentUser.reloadUserInfo.localId;
-    const currentDate = new Date().toISOString().split('T')[0];
-    // const currentDate="2024-04-09"
+    // const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate="2024-04-21"
     const userRef = ref(database, `/users/${id}`);
 
     get(userRef)
         .then((snapshot) => {
-            const userData = snapshot.val();
-            if (userData.customMeditationBestTime) {
-                const lastUpdatedDate = Object.keys(userData.customMeditationBestTime).pop();
-                if (lastUpdatedDate === currentDate && userData.customMeditationBestTime[currentDate] < duration) {
-                    // Update the best time for the current date if a better duration is achieved
-                    const newData = {
-                        ...userData,
-                        customMeditationBestTime: {
-                            ...userData.customMeditationBestTime,
-                            [currentDate]: duration
-                        }
-                    };
-                    update(userRef, newData)
-                        .then(() => {
-                            console.log("New best time updated successfully for current date with " + duration);
-                        })
-                        .catch((error) => {
-                            console.error(error);
-                        });
-                } else if (lastUpdatedDate < currentDate) {
-                    // Add a new best time for the current date if it's a new day
-                    const newData = {
-                        ...userData,
-                        customMeditationBestTime: {
-                            ...userData.customMeditationBestTime,
-                            [currentDate]: duration
-                        }
-                    };
-                    update(userRef, newData)
-                        .then(() => {
-                            console.log("New best time added successfully for current date with " + duration);
-                        })
-                        .catch((error) => {
-                            console.error(error);
-                        });
-                }
-            } else {
-                // Add the first best time for the current date if it's not available
-                const newData = {
-                    ...userData,
-                    customMeditationBestTime: {
-                        [currentDate]: duration
+            const userData=snapshot.val()
+            const lastObjectNumber=parseInt(Object.keys(userData.customMeditationBestTime).pop())
+            const lastModifiedData=(userData.customMeditationBestTime[lastObjectNumber])
+            const oldKey=String(lastObjectNumber)
+            const newKey=String(lastObjectNumber+1)
+            //update the existing count
+            if(userData.customMeditationBestTime[lastObjectNumber].date===currentDate){
+                const newData={
+                  ...userData,
+                  customMeditationBestTime:{
+                    ...userData.customMeditationBestTime,
+                    [oldKey]:{
+                      date:`${currentDate}`,
+                      count:duration
                     }
-                };
-                update(userRef, newData)
-                    .then(() => {
-                        console.log("New best time added successfully for current date with " + duration);
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
+                  }
+                }
+                update(userRef,newData)
+                .then(()=>{
+                    console.log("updated the count successfully");
+                })
+                .catch((error)=>{
+                    console.error(error);
+                })
+            }
+            //create a new date
+            else if(currentDate!==userData.customMeditationBestTime[lastObjectNumber].date){
+                const newData={
+                  ...userData,
+                  customMeditationBestTime:{
+                    ...userData.customMeditationBestTime,
+                    [newKey]:{
+                      date:currentDate,
+                      count:duration
+                    }
+                  }
+                }
+                update(userRef,newData)
+                .then(()=>{
+                    console.log("new date added successfully");
+                })
+                .catch((error)=>{
+                    console.error(error);
+                })
             }
         })
         .catch((error) => {

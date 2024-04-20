@@ -26,6 +26,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 3%;
+  margin-bottom: 7%;
 }
 .heatmap-button {
   padding: 2%;
@@ -58,4 +59,12 @@
 .color-high-contribution {
   fill: #239a3b;
   /* Dark green for cells with high contributions */
+}
+.custom-meditation-container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
 }

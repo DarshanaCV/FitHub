@@ -6,7 +6,9 @@ import { get, ref ,update} from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
 const Mountain=()=>{
+    
     const [bestTime,setBestTime]=React.useState(0)
+    
     const navigate = useNavigate();
     
     React.useEffect(()=>{
