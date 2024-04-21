@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { database } from '../../firebase_setup/firebase';
 import { get, ref, update } from 'firebase/database';
-import './MoodCounter.css'; // Import CSS file for styling
+import './MoodCounter.css'; 
 
 const MoodCounter = () => {
     const [mood, setMood] = useState("");
@@ -21,6 +21,7 @@ const MoodCounter = () => {
         const userRef = ref(database, `users/${userId}`);
         const currentDate = new Date().toISOString().split('T')[0];
         // const currentDate="2024-04-21"
+        console.log(currentDate);
 
         get(userRef)
             .then((snapshot) => {
@@ -68,11 +69,11 @@ const MoodCounter = () => {
 
     return (
         <div className='mood-container'>
-            <h2>How are you feeling today?</h2>
+            <h3>How are you feeling today?</h3>
             <div className='moods'>
-                <button onClick={() => handleMoodChange('happy')} className={`mood ${mood === 'happy' ? 'selected-mood' : ''}`}>😊 Happy</button>
-                <button onClick={() => handleMoodChange('sad')} className={`mood ${mood === 'sad' ? 'selected-mood' : ''}`}>😢 Sad</button>
-                <button onClick={() => handleMoodChange('neutral')} className={`mood ${mood === 'neutral' ? 'selected-mood' : ''}`}>😐 Neutral</button>
+                <button onClick={() => handleMoodChange('happy')} className={`mood ${mood === 'happy' ? 'selected-mood' : ''}`}>😊</button>
+                <button onClick={() => handleMoodChange('sad')} className={`mood ${mood === 'sad' ? 'selected-mood' : ''}`}>😢</button>
+                <button onClick={() => handleMoodChange('neutral')} className={`mood ${mood === 'neutral' ? 'selected-mood' : ''}`}>😐</button>
             </div>
         </div>
     );

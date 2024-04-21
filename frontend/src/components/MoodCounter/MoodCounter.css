@@ -1,3 +1,20 @@
+.moods{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 5%;
+}
+.mood{
+    padding: 3% 7%;
+    border-radius: 15%;
+    font-size: large;
+    cursor: pointer;
+}
 .selected-mood{
-    background-color: blueviolet;
+    background-color: rgb(116, 51, 177);
+}
+.happy{
+    color: rgb(255, 187, 0);   
 }
