@@ -1,6 +1,6 @@
 import './App.css'
 import React from 'react';
-import {BrowserRouter ,Routes,Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home'
 import Signup from './pages/Signup/Signup';
@@ -16,27 +16,30 @@ import Lunge from './pages/YogaPoseInfo/Lunge';
 import Goddess from './pages/YogaPoseInfo/Goddess';
 import Reports from './pages/Reports/Reports';
 import Footer from './components/Footer/Footer';
-const App = () => {
 
+const App = () => {
+    const location=window.location.pathname
+    console.log(location);
+    const hideFooter=location=="/signup"?true:false
     return (
         <BrowserRouter>
             <Navbar />
             <Routes>
-                <Route path='/' element={<Home/>} />
-                <Route path='/signup' element={<Signup/>}/>
-                <Route path='/yoga' element={<Yoga/>}></Route>
-                <Route path='/tree' element={<Tree/>}></Route>
-                <Route path='/warrior' element={<Warrior/>}></Route>
-                <Route path='/mountain' element={<Mountain/>}></Route>
-                <Route path='/lunge' element={<Lunge/>}></Route>
-                <Route path='/goddess' element={<Goddess/>}></Route>
-                <Route path='/meditate' element={<Meditation/>}></Route>
-                <Route path='/guided-breathing' element={<GuidedBreathing/>}></Route>
-                <Route path='/guided-breathing-page' element={<GuidedBreathingContainer/>}></Route>
-                <Route path='/custom-meditate' element={<CustomMeditate/>}></Route>
-                <Route path='/reports' element={<Reports/>}></Route>
+                <Route path='/' element={<Home />} />
+                <Route path='/signup' element={<Signup />} />
+                <Route path='/yoga' element={<Yoga />} />
+                <Route path='/tree' element={<Tree />} />
+                <Route path='/warrior' element={<Warrior />} />
+                <Route path='/mountain' element={<Mountain />} />
+                <Route path='/lunge' element={<Lunge />} />
+                <Route path='/goddess' element={<Goddess />} />
+                <Route path='/meditate' element={<Meditation />} />
+                <Route path='/guided-breathing' element={<GuidedBreathing />} />
+                <Route path='/guided-breathing-page' element={<GuidedBreathingContainer />} />
+                <Route path='/custom-meditate' element={<CustomMeditate />} />
+                <Route path='/reports' element={<Reports />} />
             </Routes>
-            <Footer />
+            {hideFooter ? "": <Footer />}
         </BrowserRouter>
     );
 };

@@ -46,9 +46,7 @@ const Home = () => {
                 <div className="left-container-img">
                     <div className="left-container-img-info">
                         <p>
-                            {/* FitHub revolutionizes yoga practice with real-time pose correction via computer vision, 
-                            fostering mindfulness and physical well-being. Guided meditation sessions, progress tracking, 
-                            and elevate users' holistic health journey. */}Join FitHub for an immersive experience in yoga and 
+                            Join FitHub for an immersive experience in yoga and 
                             meditation, empowering you to reach your wellness goals.
                         </p>
                         <NavLink to="/yoga"><button className="button-getStarted">Let's Start</button></NavLink>

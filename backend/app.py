@@ -9,7 +9,6 @@ import numpy as np
 app = Flask(__name__)
 CORS(app)
 
-# Initialize MediaPipe outside the route to avoid reinitialization on each request
 mp_pose = mp.solutions.pose
 mp_drawing = mp.solutions.drawing_utils
 pose_video = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5, model_complexity=1)
@@ -95,9 +94,7 @@ def correct_warrior_pose(results):
         return False
 
 def correct_goddess_pose(results):
-    # Initialize a list to store the detected landmarks.
     result={}
-    # Check if any landmarks are detected.
     if results.pose_landmarks:
         for i in range(33):
             result[mp_pose.PoseLandmark(i).name] = results.pose_landmarks.landmark[mp_pose.PoseLandmark(i).value]
