@@ -3,7 +3,8 @@ import { database } from "../../firebase_setup/firebase";
 import { ref, get } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import "./Chart.css"
+import '../components.css';
+
 const ProgressChart = ({ pose }) => {
     const [chartData, setChartData] = useState([]);
     const navigate = useNavigate();

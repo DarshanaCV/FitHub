@@ -1,0 +1,442 @@
+/****************Box Breathing******************/
+.box-breathing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-left: 90px;
+}
+
+.countdown {
+    position: absolute;
+    left: 45%;
+    top: 9%;
+}
+
+.square {
+    width: 403px;
+    height: 405px;
+    border: 6px solid rgb(124, 116, 116);
+    position: absolute;
+    top: 157px;
+    left: 565px;
+}
+
+.inner-circle {
+    height: 300px;
+    width: 300px;
+    background-color: rgba(94, 45, 110, 0.789);
+    border-radius: 200px;
+    position: absolute;
+    top: 11.5%;
+    left: 11.5%;
+}
+
+.circle1 {
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    border-radius: 200px;
+    transition: transform 3.0s;
+    background-color: rgba(94, 45, 110, 0.701);
+}
+
+.circle2 {
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    border-radius: 200px;
+    transition: transform 3s;
+    background-color: rgba(94, 45, 110, 0.458);
+}
+
+.square .text {
+    text-align: center;
+    font-size: 40px;
+    color: white;
+    margin-top: 42%;
+    transition: transform 4.0s;
+}
+
+.zoom-in {
+    transform: scale(1.1);
+}
+
+.zoom-in-circle {
+    transform: scale(1.12);
+}
+
+.dot {
+    width: 30px;
+    height: 30px;
+    background-color: orangered;
+    border-radius: 50%;
+    position: absolute;
+}
+
+
+/*****************Charts.css******************/
+.chart-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: normal;
+    margin-top: 40px;
+}
+
+.chart-container p {
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    font-size: large;
+}
+
+.heatmap-container {
+    width: 100%;
+    height: 20vh;
+}
+
+/* MeditationChart.css */
+
+.custom-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+    margin-bottom: 7%;
+}
+
+.heatmap-button {
+    padding: 2%;
+    font-size: xx-large;
+    background: none;
+    cursor: pointer;
+    margin: 0% 2%;
+}
+
+/* Define CSS classes for color-coding the heatmap */
+.color-empty {
+    fill: #ebedf0;
+    /* Light grey for empty cells */
+}
+
+.color-no-contribution {
+    fill: #ebedf0;
+    /* Light grey for cells with no contributions */
+}
+
+.color-low-contribution {
+    fill: #c6e48b;
+    /* Light green for cells with low contributions */
+}
+
+.color-medium-contribution {
+    fill: #7bc96f;
+    /* Medium green for cells with medium contributions */
+}
+
+.color-high-contribution {
+    fill: #239a3b;
+    /* Dark green for cells with high contributions */
+}
+
+.custom-meditation-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+}
+
+
+/********************CustomMeditate*********************/
+.custom-meditate-container {
+    margin-left: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.select-music {
+    margin-left: 92%;
+    padding-top: 2%;
+}
+
+.font-icons {
+    height: 30px;
+    cursor: pointer;
+    z-index: 9;
+    position: absolute;
+}
+
+.timer-container {
+    margin-top: 6%;
+    margin-left: -3%;
+    padding: 2% 0%;
+    background-color: rgba(242, 238, 252, 0.841);
+    height: 490px;
+    width: 30%;
+    border-radius: 15px;
+} 
+/********************Footer**********************/
+.footer-container {
+    margin-left: 90px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    height: 40vh;
+    background-color: #e3e3e3;
+    letter-spacing: 0.5px;
+}
+
+.footer-left-side {
+    display: flex;
+    flex-direction: row;
+    /* background-color: antiquewhite; */
+    align-items: center;
+    text-align: left;
+    justify-content: center;
+    padding: 3%;
+    width: 70%;
+}
+
+.footer-left-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    border-left: 5px solid rgb(150, 148, 148);
+    border-radius: 2px;
+    /* background-color: aqua; */
+    padding-left: 3%;
+    margin-left: 4%;
+    width: 100%;
+}
+
+.footer-left-navs {
+    display: grid;
+    grid-template-columns: 20% 20% 30%;
+    margin-bottom: 4%;
+    font-size: large;
+    gap: 0% 0% 5% 0%;
+}
+
+.item {
+    padding-top: 5%;
+    text-decoration: none;
+    color: rgb(35, 35, 35);
+}
+
+.footer-right-side {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    margin-right: 5%;
+}
+
+.footer-right-side img {
+    height: 40px;
+    margin-top: 15%;
+    margin-bottom: 7%;
+    cursor: pointer;
+}
+
+.footer-right {
+    margin-left: -10%;
+    color: rgb(35, 35, 35)
+}
+
+/************************Gratitude Journal***********************/
+.gratitude-journal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    padding: 0%;
+}
+
+textarea {
+    width: 100%;
+    height: 6vh;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.journal-btn {
+    width: fit-content;
+    text-align: center;
+    padding: 2% 5%;
+    margin-left: 40%;
+    background-color: rgb(28, 28, 28);
+    color: white;
+    cursor: pointer;
+    border-radius: 10%;
+}
+
+.journal-entries {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    text-align: start;
+}
+
+.journal-entries ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    text-align: start;
+}
+
+.gratitude-entry {
+    list-style-type: decimal;
+    margin-left: 5%;
+    font-size: small;
+    margin-top: 3%;
+}
+
+/*********************MonthlyGoals**********************/
+.monthlygoals-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.monthlygoals-head {
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.monthlygoals-head input {
+    padding: 10% 45%;
+    margin-right: 30%;
+}
+
+.monthlygoals-head button {
+    padding: 10%;
+    margin-top: 10%;
+    border-radius: 10%;
+    background-color: rgb(28, 28, 28);
+    color: white;
+    cursor: pointer;
+}
+
+.delete-button {
+    cursor: pointer;
+    margin-left: 10%;
+    margin-top: 5%;
+    color: rgb(91, 91, 91);
+}
+
+.goals-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 30px;
+}
+
+.ul {
+    list-style-type: none;
+    margin-top: 5%;
+}
+
+.li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+/******************MoodCounter*******************/
+.moods {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.mood {
+    padding: 3% 7%;
+    border-radius: 15%;
+    font-size: large;
+    cursor: pointer;
+}
+
+.selected-mood {
+    background-color: rgb(116, 51, 177);
+}
+
+.happy {
+    color: rgb(255, 187, 0);
+}
+
+/***************selectMusic*******************/
+.select-music-container {
+    height: 99.5vh;
+    width: 350px;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    background-color: #fafafa;
+    padding: 2%;
+    z-index: 1;
+
+}
+
+.select-music-container .music-heading {
+    margin-left: 5%;
+    margin-bottom: 2%;
+    padding-bottom: 6%;
+    font-size: large;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid black;
+}
+
+.unselect-music-container {
+    display: none;
+}
+
+.music-container {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    align-items: center;
+    padding-left: 5%;
+    height: 10%;
+    margin-bottom: 2%;
+    cursor: pointer;
+}
+
+.music-container:hover {
+    transform: scale(1.05);
+}

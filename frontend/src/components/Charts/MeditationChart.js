@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { get, ref } from 'firebase/database';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
-import './Chart.css';
+import '../components.css';
 
 const MeditationChart = () => {
   const [meditationsData, setMeditationsData] = useState([]);

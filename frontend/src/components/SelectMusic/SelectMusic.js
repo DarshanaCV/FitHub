@@ -1,7 +1,7 @@
 import React from 'react';
 import { faCirclePlay,faCirclePause,faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./selectMusic.css";
+import "../components.css";
 
 const music1=require("./meditation-music/music1.mp3")
 const music2=require("./meditation-music/music2.mp3")

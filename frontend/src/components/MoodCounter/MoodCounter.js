@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { database } from '../../firebase_setup/firebase';
 import { get, ref, update } from 'firebase/database';
-import './MoodCounter.css'; 
+import '../components.css'; 
 
 const MoodCounter = () => {
     const [mood, setMood] = useState("");

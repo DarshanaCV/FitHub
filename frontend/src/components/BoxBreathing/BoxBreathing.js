@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './BoxBreathing.css'
+import '../components.css'
 
 const squareSize=403
 const animationDuration=4000

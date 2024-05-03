@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleMinus } from '@fortawesome/free-solid-svg-icons';
-import "./MonthlyGoals.css"
+import "../components.css"
 const MonthlyGoals = () => {
     const [goals, setGoals] = useState([]);
     const MAX_GOALS_PER_MONTH = 6; 

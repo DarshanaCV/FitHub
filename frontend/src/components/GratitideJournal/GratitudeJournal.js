@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { database } from '../../firebase_setup/firebase';
 import { get, ref, push } from 'firebase/database';
-import './GratitudeJournal.css'; // Import CSS file for styling
+import '../components.css'; // Import CSS file for styling
 
 const GratitudeJournal = () => {
     const [entry, setEntry] = useState('');

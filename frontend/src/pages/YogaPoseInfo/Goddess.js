@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import "./YogaPoseInfo.css";
+import "../../App.css";
 import { database, auth } from '../../firebase_setup/firebase';
 import { get, ref, update } from "firebase/database";
 import { useNavigate } from "react-router-dom";

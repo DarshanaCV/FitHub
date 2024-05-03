@@ -4,7 +4,7 @@ import MeditationTimer from "../MeditationTimer/MeditationTimer";
 import SelectMusic from '../SelectMusic/SelectMusic';
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./CustomMeditate.css";
+import "../components.css";
 
 
 const CustomMeditate = () => {
